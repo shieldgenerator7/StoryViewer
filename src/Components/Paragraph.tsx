@@ -5,9 +5,18 @@ interface Props {
 }
 
 function Paragraph({ paragraph }: Props) {
+    const searchWord = "dwarf";
+    const words = paragraph.split(" ");
     return (
         <>
-            <p>{paragraph}</p>
+            <p>
+                {words.map((word) => (
+                    <>
+                        {word != searchWord && word + " "}
+                        {word == searchWord && <button>{word + " "}</button>}
+                    </>
+                ))}
+            </p>
         </>
     );
 }
