@@ -5,19 +5,15 @@
   text-align: center;
 }
 
-.url{
+.url {
   width: 90%;
 }
 
-div{
-  width:40%;
-  /* border: solid white; */
+#root {
+  width: 50%;
 }
 
-p{
+p {
   width: 100%;
   text-align: left;
-  /* border: solid white; */
-  /* padding-left: 10rem; */
-  /* padding-right: 10rem; */
 }
