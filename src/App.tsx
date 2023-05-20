@@ -29,6 +29,10 @@ function App() {
         }
     }
 
+    document.title = story
+        ? story.chapters[0].title + " (Story Viewer)"
+        : "Story Viewer";
+
     return (
         <>
             {!story && (
