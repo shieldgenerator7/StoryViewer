@@ -1,10 +1,10 @@
 "use strict";
 
 class Story{
-    constructor(url, number){
+    constructor(text){
         this.chapters = [];
-        this.url = url;
         this.number = number * 10;
+        this.text = text;
     }
 }
 

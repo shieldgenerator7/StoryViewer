@@ -12,7 +12,7 @@ function App() {
         <>
             <Message />
             {!story && <FrontDesk setStory={setStory} />}
-            {story?.url}
+            {story?.text}
         </>
     );
 }
