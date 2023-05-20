@@ -11,9 +11,10 @@ function Paragraph({ paragraph, searchWords }: Props) {
     return (
         <>
             <p>
-                {words.map((word) => (
+                {words.map((word, index) => (
                     <>
                         <Word
+                            key={index}
                             word={word}
                             searchWords={searchWords}
                         />{" "}

@@ -27,16 +27,20 @@ function App() {
                 chapter.lines.map((line, index) => (
                     <>
                         {index == 0 && (
-                            <h1 key={chIndex * 100000 + index}>{line}</h1>
+                            <h1 key={chIndex + "-" + index}>{line}</h1>
                         )}
                         {index > 0 && (
                             <>
                                 {line?.trim().length > 0 && (
-                                    <span className="place">
+                                    <span
+                                        className="place"
+                                        key={"spn" + chIndex + "-" + index}
+                                    >
                                         {chIndex}-{index}
                                     </span>
                                 )}
                                 <Paragraph
+                                    key={"p" + chIndex + "-" + index}
                                     paragraph={line}
                                     searchWords={searchWords}
                                 />
