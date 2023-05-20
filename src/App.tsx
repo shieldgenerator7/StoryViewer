@@ -9,7 +9,6 @@ function App() {
     return (
         <>
             {!story && <FrontDesk setStory={setStory} />}
-            {story?.text.indexOf("\n")}
             {story?.chapters.map((chapter) =>
                 chapter.lines.map((line, index) => (
                     <>
