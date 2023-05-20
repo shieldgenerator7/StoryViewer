@@ -6,18 +6,22 @@ import Paragraph from "./Components/Paragraph";
 
 function App() {
     const [story, setStory] = useState(undefined);
-    const searchWords = [
-        "dwarf",
-        "Astalir",
-        "deer",
-        "Jodi",
-        "Sui",
-        "Grar",
-        "kobold",
-    ];
+    const [characters, setCharacters] = useState(undefined);
+
     return (
         <>
-            {!story && <FrontDesk setStory={setStory} />}
+            {!story && (
+                <FrontDesk
+                    label="Story"
+                    setStory={setStory}
+                />
+            )}
+            {!characters && (
+                <FrontDesk
+                    label="Characters"
+                    setStory={setCharacters}
+                />
+            )}
             {story?.chapters.map((chapter, chIndex) =>
                 chapter.lines.map((line, index) => (
                     <>
@@ -27,7 +31,11 @@ function App() {
                         {index > 0 && (
                             <Paragraph
                                 paragraph={line}
-                                searchWords={searchWords}
+                                searchWords={
+                                    characters?.chapters.map(
+                                        (chap) => chap.title
+                                    ) ?? []
+                                }
                             />
                         )}
                     </>

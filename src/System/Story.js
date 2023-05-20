@@ -4,6 +4,8 @@ class Story{
     constructor(text){
         this.chapters = [];
         this.text = text;
-        this.chapters = text.split('#').map(text => new Chapter(text));
+        this.chapters = text.split('#')
+            .filter(str => str?.trim())
+            .map(text => new Chapter(text));
     }
 }

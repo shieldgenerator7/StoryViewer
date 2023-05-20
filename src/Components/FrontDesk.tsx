@@ -2,9 +2,10 @@
 
 interface Props {
     setStory: Function;
+    label: string;
 }
 
-function FrontDesk({ setStory }: Props) {
+function FrontDesk({ label, setStory }: Props) {
     let loadText = function (url: string) {
         if (url) {
             //2023-05-19: copied from https://stackoverflow.com/a/39758157/2336212
@@ -18,16 +19,16 @@ function FrontDesk({ setStory }: Props) {
 
     return (
         <>
-            Enter URL of story:
+            Enter URL of {label}:
             <input
-                id="txtURL"
+                id={`txtURL${label}`}
                 className="url"
                 placeholder="https://raw.githubusercontent.com/user/repository/file"
             ></input>
             <button
                 id="btnLoad"
                 onClick={() =>
-                    loadText(document.getElementById("txtURL")?.value)
+                    loadText(document.getElementById(`txtURL${label}`)?.value)
                 }
             >
                 GO
