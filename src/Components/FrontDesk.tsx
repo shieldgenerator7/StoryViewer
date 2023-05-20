@@ -1,8 +1,8 @@
 "use strict";
 
 interface Props {
-    setStory: Function;
     label: string;
+    setStory: (story: Story) => void;
 }
 
 function FrontDesk({ label, setStory }: Props) {
