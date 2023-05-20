@@ -4,13 +4,14 @@ import Word from "./Word";
 interface Props {
     paragraph: string;
     searchWords: string[];
+    id: string;
 }
 
-function Paragraph({ paragraph, searchWords }: Props) {
+function Paragraph({ paragraph, searchWords, id }: Props) {
     const words = paragraph.split(" ");
     return (
         <>
-            <p>
+            <p id={id}>
                 {words.map((word, index) => (
                     <>
                         <Word
