@@ -47,7 +47,12 @@ function App() {
                 chapter.lines.map((line, index) => (
                     <>
                         {index == 0 && (
-                            <h1 key={chIndex + "-" + index}>{line}</h1>
+                            <h1
+                                id={"ch" + chIndex}
+                                key={chIndex + "-" + index}
+                            >
+                                {line}
+                            </h1>
                         )}
                         {index > 0 && (
                             <>
