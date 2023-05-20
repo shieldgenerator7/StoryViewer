@@ -9,11 +9,15 @@ function App() {
     return (
         <>
             {!story && <FrontDesk setStory={setStory} />}
-            {story?.chapters.map((chapter) =>
+            {story?.chapters.map((chapter, chIndex) =>
                 chapter.lines.map((line, index) => (
                     <>
-                        {index == 0 && <h1 key={index}>{line}</h1>}
-                        {index > 0 && <p key={index}>{line}</p>}
+                        {index == 0 && (
+                            <h1 key={chIndex * 100000 + index}>{line}</h1>
+                        )}
+                        {index > 0 && (
+                            <p key={chIndex * 100000 + index}>{line}</p>
+                        )}
                     </>
                 ))
             )}
