@@ -8,6 +8,7 @@ function App() {
     const [story, setStory] = useState(undefined);
     const [characters, setCharacters] = useState(undefined);
 
+    let searchWords = characters?.chapters.map((chap) => chap.title) ?? [];
     return (
         <>
             {!story && (
@@ -31,11 +32,7 @@ function App() {
                         {index > 0 && (
                             <Paragraph
                                 paragraph={line}
-                                searchWords={
-                                    characters?.chapters.map(
-                                        (chap) => chap.title
-                                    ) ?? []
-                                }
+                                searchWords={searchWords}
                             />
                         )}
                     </>
