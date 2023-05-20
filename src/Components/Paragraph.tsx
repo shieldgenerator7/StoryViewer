@@ -2,21 +2,21 @@
 
 interface Props {
     paragraph: string;
+    searchWords: string[];
 }
 
-function Paragraph({ paragraph }: Props) {
-    const searchWord = "dwarf";
+function Paragraph({ paragraph, searchWords }: Props) {
     const words = paragraph.split(" ");
     return (
         <>
             <p>
                 {words.map((word) => (
                     <>
-                        {word != searchWord && word + " "}
-                        {word == searchWord && (
+                        {!searchWords.includes(word) && word + " "}
+                        {searchWords.includes(word) && (
                             <a
                                 className="moreInfo"
-                                onClick={() => alert(searchWord)}
+                                onClick={() => alert(word)}
                             >
                                 {word + " "}
                             </a>
