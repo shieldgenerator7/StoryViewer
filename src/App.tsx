@@ -8,7 +8,7 @@ function App() {
     const [story, setStory] = useState(undefined);
     const [characters, setCharacters] = useState(undefined);
 
-    let searchWords = characters?.chapters.map((chap) => chap.title) ?? [];
+    let searchWords = characters?.chapters ?? [];
     return (
         <>
             {!story && (
