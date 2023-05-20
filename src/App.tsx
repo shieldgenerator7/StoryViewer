@@ -13,7 +13,7 @@ function App() {
             {story?.chapters.map((chapter) =>
                 chapter.lines.map((line, index) => (
                     <>
-                        {index == 0 && <h1>{line}</h1>}
+                        {index == 0 && <h1 key={index}>{line}</h1>}
                         {index > 0 && <p key={index}>{line}</p>}
                     </>
                 ))
