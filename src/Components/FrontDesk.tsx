@@ -1,5 +1,4 @@
 "use strict";
-import Story from "../System/Story";
 
 interface Props {
     setStory: Function;

@@ -10,9 +10,14 @@ function App() {
         <>
             {!story && <FrontDesk setStory={setStory} />}
             {story?.text.indexOf("\n")}
-            {story?.lines.map((line, index) => (
-                <p key={index}>{line}</p>
-            ))}
+            {story?.chapters.map((chapter) =>
+                chapter.lines.map((line, index) => (
+                    <>
+                        {index == 0 && <h1>{line}</h1>}
+                        {index > 0 && <p key={index}>{line}</p>}
+                    </>
+                ))
+            )}
         </>
     );
 }
