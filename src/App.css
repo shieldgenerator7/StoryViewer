@@ -19,3 +19,15 @@ p {
   width: 100%;
   text-align: left;
 }
+
+.moreInfo{
+  color: inherit;
+  font-weight: inherit;
+  /* border: solid white; */
+   border-radius: 10%;
+}
+
+.moreInfo:hover{
+  color:black;
+  background-color: white;
+}

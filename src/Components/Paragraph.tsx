@@ -13,7 +13,9 @@ function Paragraph({ paragraph }: Props) {
                 {words.map((word) => (
                     <>
                         {word != searchWord && word + " "}
-                        {word == searchWord && <button>{word + " "}</button>}
+                        {word == searchWord && (
+                            <a className="moreInfo">{word + " "}</a>
+                        )}
                     </>
                 ))}
             </p>
