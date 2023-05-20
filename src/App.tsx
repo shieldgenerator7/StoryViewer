@@ -5,14 +5,14 @@ import Message from "./Components/Message";
 import FrontDesk from "./Components/FrontDesk";
 
 function App() {
-  const [count, setCount] = useState(0);
+    const [count, setCount] = useState(0);
 
-  return (
-    <>
-      <Message />
-      <FrontDesk />
-    </>
-  );
+    return (
+        <>
+            <Message />
+            <FrontDesk />
+        </>
+    );
 }
 
 export default App;
