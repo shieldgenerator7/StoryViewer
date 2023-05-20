@@ -14,7 +14,12 @@ function Paragraph({ paragraph }: Props) {
                     <>
                         {word != searchWord && word + " "}
                         {word == searchWord && (
-                            <a className="moreInfo">{word + " "}</a>
+                            <a
+                                className="moreInfo"
+                                onClick={() => alert(searchWord)}
+                            >
+                                {word + " "}
+                            </a>
                         )}
                     </>
                 ))}
