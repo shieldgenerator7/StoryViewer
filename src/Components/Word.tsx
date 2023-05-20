@@ -8,20 +8,20 @@ interface Props {
 function Word({ word, searchWords }: Props) {
     word = word.trim();
     const containedSearchWord = searchWords.find((search) =>
-        word.includes(search.title)
+        word.includes(search.title1)
     );
     if (containedSearchWord) {
         word = ` ${word} `;
-        let sections = word.split(containedSearchWord.title);
-        sections.splice(1, 0, containedSearchWord.title);
+        let sections = word.split(containedSearchWord.title1);
+        sections.splice(1, 0, containedSearchWord.title1);
         sections = sections.filter((str) => str?.trim());
         //console.log(sections);
         return (
             <>
                 {sections.map((section) => (
                     <>
-                        {section != containedSearchWord.title && section}
-                        {section == containedSearchWord.title && (
+                        {section != containedSearchWord.title1 && section}
+                        {section == containedSearchWord.title1 && (
                             <a
                                 className="moreInfo"
                                 onClick={() =>
