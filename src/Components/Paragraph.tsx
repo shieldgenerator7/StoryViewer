@@ -1,4 +1,5 @@
 "use strict";
+import Word from "./Word";
 
 interface Props {
     paragraph: string;
@@ -12,15 +13,10 @@ function Paragraph({ paragraph, searchWords }: Props) {
             <p>
                 {words.map((word) => (
                     <>
-                        {!searchWords.includes(word) && word + " "}
-                        {searchWords.includes(word) && (
-                            <a
-                                className="moreInfo"
-                                onClick={() => alert(word)}
-                            >
-                                {word + " "}
-                            </a>
-                        )}
+                        <Word
+                            word={word}
+                            searchWords={searchWords}
+                        />{" "}
                     </>
                 ))}
             </p>
