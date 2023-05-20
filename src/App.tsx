@@ -6,11 +6,13 @@ import FrontDesk from "./Components/FrontDesk";
 
 function App() {
     const [count, setCount] = useState(0);
+    const [story, setStory] = useState("");
 
     return (
         <>
             <Message />
-            <FrontDesk />
+            {!story && <FrontDesk setStory={setStory} />}
+            {story}
         </>
     );
 }

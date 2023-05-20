@@ -1,9 +1,14 @@
 "use strict";
 
-function FrontDesk() {
+interface Props {
+    setStory: Function;
+}
+
+function FrontDesk({ setStory }: Props) {
     let loadText = function (url: string) {
         if (url) {
             alert(url);
+            setStory(url);
         }
     };
 
