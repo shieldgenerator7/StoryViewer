@@ -31,3 +31,9 @@ p {
   color:black;
   background-color: white;
 }
+
+.place{
+  position: absolute;
+  left:3%;
+  user-select: none;
+}

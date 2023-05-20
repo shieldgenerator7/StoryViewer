@@ -30,10 +30,18 @@ function App() {
                             <h1 key={chIndex * 100000 + index}>{line}</h1>
                         )}
                         {index > 0 && (
-                            <Paragraph
-                                paragraph={line}
-                                searchWords={searchWords}
-                            />
+                            <>
+                                {line?.trim().length > 0 && (
+                                    <span className="place">
+                                        {chIndex}-{index}
+                                    </span>
+                                )}
+                                <Paragraph
+                                    paragraph={line}
+                                    searchWords={searchWords}
+                                />
+                                <p></p>
+                            </>
                         )}
                     </>
                 ))
