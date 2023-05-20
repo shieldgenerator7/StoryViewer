@@ -32,22 +32,26 @@ function App() {
     return (
         <>
             {!story && (
-                <FrontDesk
-                    label="Story"
-                    setStory={setStory}
-                />
+                <div>
+                    <FrontDesk
+                        label="Story"
+                        setStory={setStory}
+                    />
+                </div>
             )}
             {!characters && (
-                <FrontDesk
-                    label="Characters"
-                    setStory={setCharacters}
-                />
+                <div>
+                    <FrontDesk
+                        label="Characters"
+                        setStory={setCharacters}
+                    />
+                </div>
             )}
             {story?.chapters.map((chapter, index) => (
                 <a
                     className="buttonLink"
                     href={"#" + "ch" + index}
-                    style={{ left: index * 30 + 10 }}
+                    style={{ left: index * 35 + 10 }}
                 >
                     Ch{index}
                 </a>
@@ -56,7 +60,7 @@ function App() {
                 <a
                     className="buttonLink"
                     href={"#" + "chEnd"}
-                    style={{ left: story.chapters.length * 30 + 10 }}
+                    style={{ left: story.chapters.length * 35 + 10 }}
                 >
                     End
                 </a>
