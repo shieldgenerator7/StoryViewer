@@ -43,6 +43,15 @@ function App() {
                     setStory={setCharacters}
                 />
             )}
+            {story?.chapters.map((chapter, index) => (
+                <a
+                    className="buttonLink"
+                    href={"#" + "ch" + index}
+                    style={{ left: index * 30 + 10 }}
+                >
+                    Ch{index}
+                </a>
+            ))}
             {story?.chapters.map((chapter, chIndex) =>
                 chapter.lines.map((line, index) => (
                     <>
