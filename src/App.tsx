@@ -10,8 +10,8 @@ function App() {
         <>
             {!story && <FrontDesk setStory={setStory} />}
             {story?.text.indexOf("\n")}
-            {story?.lines.map((line) => (
-                <div>{line}</div>
+            {story?.lines.map((line, index) => (
+                <p key={index}>{line}</p>
             ))}
         </>
     );

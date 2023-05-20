@@ -9,6 +9,15 @@
   width: 90%;
 }
 
+div{
+  width:40%;
+  /* border: solid white; */
 }
 
+p{
+  width: 100%;
+  text-align: left;
+  /* border: solid white; */
+  /* padding-left: 10rem; */
+  /* padding-right: 10rem; */
 }
