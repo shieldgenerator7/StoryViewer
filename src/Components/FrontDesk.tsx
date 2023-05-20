@@ -8,7 +8,6 @@ interface Props {
 function FrontDesk({ setStory }: Props) {
     let loadText = function (url: string) {
         if (url) {
-            alert(url);
             //2023-05-19: copied from https://stackoverflow.com/a/39758157/2336212
             fetch(url).then(function (response) {
                 response.text().then(function (text) {
