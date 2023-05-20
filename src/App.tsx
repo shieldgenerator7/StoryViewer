@@ -1,18 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Message from './Components/Message'
-import 'bootstrap/dist/css/bootstrap.css'
+import { useState } from "react";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.css";
+import Message from "./Components/Message";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
-      <>
-        <Message />
-      </>
+    <>
+      <Message />
+    </>
   );
 }
 
-export default App
+export default App;
