@@ -1,4 +1,5 @@
 "use strict";
+import Story from "../System/Story";
 
 interface Props {
     setStory: Function;
@@ -8,7 +9,7 @@ function FrontDesk({ setStory }: Props) {
     let loadText = function (url: string) {
         if (url) {
             alert(url);
-            setStory(url);
+            setStory(new Story(url));
         }
     };
 
