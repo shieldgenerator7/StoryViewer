@@ -58,3 +58,8 @@ p {
 .buttonLink:hover{
   background: white;
 }
+
+.end{
+  text-align: center;
+  font-weight: 1000;
+}

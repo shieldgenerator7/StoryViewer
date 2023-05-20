@@ -52,6 +52,15 @@ function App() {
                     Ch{index}
                 </a>
             ))}
+            {story && (
+                <a
+                    className="buttonLink"
+                    href={"#" + "chEnd"}
+                    style={{ left: story.chapters.length * 30 + 10 }}
+                >
+                    End
+                </a>
+            )}
             {story?.chapters.map((chapter, chIndex) =>
                 chapter.lines.map((line, index) => (
                     <>
@@ -89,6 +98,14 @@ function App() {
                         )}
                     </>
                 ))
+            )}
+            {story && (
+                <p
+                    id="chEnd"
+                    className="end"
+                >
+                    ~ ~ ~
+                </p>
             )}
         </>
     );
