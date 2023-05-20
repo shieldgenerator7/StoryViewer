@@ -34,7 +34,7 @@ function Word({ word, searchWords }: Props) {
             </>
         );
     }
-    return { word };
+    return word;
 }
 
 export default Word;
