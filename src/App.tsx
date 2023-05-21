@@ -24,8 +24,12 @@ function App() {
     [characters, setCharacters] = useState(defaultStory);
 
     if (storyInfo) {
-        story = storyInfo.story;
-        characters = storyInfo.characters;
+        if (story != storyInfo.story) {
+            setStory(storyInfo.story);
+        }
+        if (characters != storyInfo.characters) {
+            setCharacters(storyInfo.characters);
+        }
     }
 
     let searchWords = characters?.chapters ?? [];
