@@ -79,6 +79,7 @@ function Home() {
                         label="Story"
                         setStory={setStory}
                         setStoryInfo={setStoryInfo}
+                        setSearchParams={setSearchParams}
                     />
                 </div>
             )}

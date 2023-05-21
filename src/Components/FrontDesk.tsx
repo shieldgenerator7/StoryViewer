@@ -1,15 +1,15 @@
 "use strict";
 import { Story } from "../System/Story";
 import { StoryInfo } from "../System/StoryInfo";
-import * as Load from "../Utility/Load";
 
 interface Props {
     label: string;
     setStory: (story: Story) => void;
     setStoryInfo: (storyInfo: StoryInfo) => void;
+    setSearchParams: (searchParams: URLSearchParams) => void;
 }
 
-function FrontDesk({ label, setStory, setStoryInfo }: Props) {
+function FrontDesk({ label, setStory, setStoryInfo, setSearchParams }: Props) {
     const txtURLId = `txtURL${label}`;
 
     return (
@@ -23,11 +23,15 @@ function FrontDesk({ label, setStory, setStoryInfo }: Props) {
             <button
                 id="btnLoad"
                 onClick={() =>
-                    Load.loadFile(
-                        (document.getElementById(txtURLId) as HTMLInputElement)
-                            ?.value,
-                        setStory,
-                        setStoryInfo
+                    setSearchParams(
+                        new URLSearchParams(
+                            "url=" +
+                                (
+                                    document.getElementById(
+                                        txtURLId
+                                    ) as HTMLInputElement
+                                )?.value
+                        )
                     )
                 }
             >
