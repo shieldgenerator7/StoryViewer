@@ -36,7 +36,7 @@ export function processJSON(
         setStoryInfo?.(storyInfo);
     });
     Fetch.fetchFile(baseURL + urls.characters, (txt: string) => {
-        storyInfo.characters = new Story(txt);
+        storyInfo.characters = JSON.parse(txt);
         setStoryInfo?.(storyInfo);
     });
     setStoryInfo?.(storyInfo);

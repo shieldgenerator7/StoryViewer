@@ -21,9 +21,10 @@ function Home() {
     const defaultStory: () => Story | undefined = () => undefined;
     [story, setStory] = useState(defaultStory);
     //Characters
-    let characters: Story | undefined;
-    let setCharacters: (story: Story | undefined) => void;
-    [characters, setCharacters] = useState(defaultStory);
+    let characters: [] | undefined;
+    let setCharacters: (story: [] | undefined) => void;
+    const defaultCharacters: () => [] | undefined = () => undefined;
+    [characters, setCharacters] = useState(defaultCharacters);
 
     const [searchParams, setSearchParams] = useSearchParams();
     const searchURL = searchParams.get("url");
@@ -53,7 +54,7 @@ function Home() {
         }
     }
 
-    let searchWords = characters?.chapters ?? [];
+    let searchWords = characters ?? [];
 
     document.title = story
         ? (story as Story).chapters[0].title + " (Story Viewer)"
