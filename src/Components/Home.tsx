@@ -7,6 +7,7 @@ import { StoryInfo } from "../System/StoryInfo";
 import { Story } from "../System/Story";
 import { Chapter } from "../System/Chapter";
 import * as Load from "../Utility/Load";
+import * as Select from "../Utility/Select";
 
 function Home() {
     //StoryInfo
@@ -53,24 +54,6 @@ function Home() {
     }
 
     let searchWords = characters?.chapters ?? [];
-
-    //2023-05-19: copied from https://stackoverflow.com/a/987376/2336212
-    // function selectText(nodeId: string) {
-    // const node = document.getElementById(nodeId);
-    // if (document.body.createTextRange) {
-    //     const range = document.body.createTextRange();
-    //     range.moveToElementText(node);
-    //     range.select();
-    // } else if (window.getSelection) {
-    //     const selection = window.getSelection();
-    //     const range = document.createRange();
-    //     range.selectNodeContents(node);
-    //     selection.removeAllRanges();
-    //     selection.addRange(range);
-    // } else {
-    //     console.warn("Could not select text in node: Unsupported browser.");
-    // }
-    // }
 
     document.title = story
         ? (story as Story).chapters[0].title + " (Story Viewer)"
@@ -128,9 +111,9 @@ function Home() {
                                         className="place"
                                         key={"spn" + chIndex + "-" + index}
                                         onClick={() => {
-                                            // selectText(
-                                            //     "p" + chIndex + "-" + index
-                                            // );
+                                            Select.selectText(
+                                                "p" + chIndex + "-" + index
+                                            );
                                         }}
                                     >
                                         {chIndex}-{index}
