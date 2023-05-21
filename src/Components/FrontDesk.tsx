@@ -24,7 +24,11 @@ function FrontDesk({ label, setStory }: Props) {
             <input
                 id={`txtURL${label}`}
                 className="url"
-                placeholder="https://raw.githubusercontent.com/user/repository/file"
+                placeholder={
+                    "https://raw.githubusercontent.com/user/repository/" +
+                    { label } +
+                    ".md"
+                }
             ></input>
             <button
                 id="btnLoad"
