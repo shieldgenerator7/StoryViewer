@@ -10,11 +10,13 @@ interface Props {
 }
 
 function FrontDesk({ label, setStory, setStoryInfo }: Props) {
+    const txtURLId = `txtURL${label}`;
+
     return (
         <>
             Enter URL of {label}:
             <input
-                id={`txtURL${label}`}
+                id={txtURLId}
                 className="url"
                 placeholder={`https://raw.githubusercontent.com/user/repository/${label}.md`}
             ></input>
@@ -22,11 +24,8 @@ function FrontDesk({ label, setStory, setStoryInfo }: Props) {
                 id="btnLoad"
                 onClick={() =>
                     Load.loadFile(
-                        (
-                            document.getElementById(
-                                `txtURL${label}`
-                            ) as HTMLInputElement
-                        )?.value,
+                        (document.getElementById(txtURLId) as HTMLInputElement)
+                            ?.value,
                         setStory,
                         setStoryInfo
                     )
