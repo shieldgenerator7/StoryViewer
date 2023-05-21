@@ -28,9 +28,19 @@ function Home() {
 
     const [searchParams, setSearchParams] = useSearchParams();
     const searchURL = searchParams.get("url");
+    const dndURL = searchParams.get("dnd");
+    const anyURL = searchURL || dndURL;
     if (searchURL) {
         if (!storyInfo && !story && !characters) {
             Load.loadFile(searchURL, setStory, setStoryInfo);
+        }
+    } else if (dndURL) {
+        if (!storyInfo && !story && !characters) {
+            Load.loadFile(
+                `https://raw.githubusercontent.com/shieldgenerator7/DnD-Stories/main/${dndURL}/${dndURL}.json`,
+                setStory,
+                setStoryInfo
+            );
         }
     } else {
         if (storyInfo) {
@@ -67,7 +77,8 @@ function Home() {
                     Loading {searchURLSplit[searchURLSplit.length - 1]}...
                 </div>
             )}
-            {!searchURL && !story && (
+            {dndURL && !story && <div>Loading {dndURL}...</div>}
+            {!anyURL && !story && (
                 <div>
                     <FrontDesk
                         label="Story"
