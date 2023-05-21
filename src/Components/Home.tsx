@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 // import "bootstrap/dist/css/bootstrap.css";
 import FrontDesk from "../Components/FrontDesk";
 import Paragraph from "../Components/Paragraph";
@@ -7,6 +8,10 @@ import { Story } from "../System/Story";
 import { Chapter } from "../System/Chapter";
 
 function Home() {
+    const [searchParams] = useSearchParams();
+    if (true || searchParams.get("url")) {
+        console.log("url", searchParams.get("url"));
+    }
     //StoryInfo
     let storyInfo: StoryInfo | undefined;
     let setStoryInfo;
