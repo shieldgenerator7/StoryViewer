@@ -27,6 +27,9 @@ function FrontDesk({ label, setStory, setStoryInfo }: Props) {
     };
 
     let processJSON = function (text: string, url: string) {
+        if (!setStoryInfo) {
+            return;
+        }
         let storyInfo = new StoryInfo();
         let urls = JSON.parse(text);
         let baseURL = url.substring(0, url.lastIndexOf("/")) + "/";
