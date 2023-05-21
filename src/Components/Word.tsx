@@ -26,8 +26,12 @@ function Word({ word, searchWords }: Props) {
                                 className="moreInfo"
                                 onClick={() =>
                                     alert(
-                                        Object.entries(containedSearchWord)
-                                        .join("\n")
+                                        Object.keys(containedSearchWord)
+                                            .map(
+                                                (key) =>
+                                                    `${key}: ${containedSearchWord[key]}`
+                                            )
+                                            .join("\n")
                                     )
                                 }
                             >
