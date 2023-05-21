@@ -7,29 +7,36 @@ interface Props {
 
 function Word({ word, searchWords }: Props) {
     word = word.trim();
-    const containedSearchWord = searchWords.find((search) =>
-        word.includes(search.name)
+    const character = searchWords.find(
+        (search) =>
+            word.includes(search.name) ||
+            search.nicknames.some((nickname: string) => word.includes(nickname))
     );
-    if (containedSearchWord) {
+    if (character) {
+        const name = word.includes(character.name)
+            ? character.name
+            : character.nicknames.find((nickname: string) =>
+                  word.includes(nickname)
+              );
         word = ` ${word} `;
-        let sections = word.split(containedSearchWord.name);
-        sections.splice(1, 0, containedSearchWord.name);
+        let sections = word.split(name);
+        sections.splice(1, 0, name);
         sections = sections.filter((str) => str?.trim());
         //console.log(sections);
         return (
             <>
                 {sections.map((section) => (
                     <>
-                        {section != containedSearchWord.name && section}
-                        {section == containedSearchWord.name && (
+                        {section != name && section}
+                        {section == name && (
                             <a
                                 className="moreInfo"
                                 onClick={() =>
                                     alert(
-                                        Object.keys(containedSearchWord)
+                                        Object.keys(character)
                                             .map(
                                                 (key) =>
-                                                    `${key}: ${containedSearchWord[key]}`
+                                                    `${key}: ${character[key]}`
                                             )
                                             .join("\n")
                                     )
