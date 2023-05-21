@@ -8,15 +8,25 @@ import { Story } from "./System/Story";
 import { Chapter } from "./System/Chapter";
 
 function App() {
+    //StoryInfo
+    let storyInfo: StoryInfo | undefined;
+    let setStoryInfo;
+    const defaultStoryInfo: () => StoryInfo | undefined = () => undefined;
+    [storyInfo, setStoryInfo] = useState(defaultStoryInfo);
+    //Story
     let story: Story | undefined;
     let setStory: (story: Story) => void;
-    const defaultStory: () => Story | undefined = function () {
-        return undefined;
-    };
+    const defaultStory: () => Story | undefined = () => undefined;
     [story, setStory] = useState(defaultStory);
+    //Characters
     let characters: Story | undefined;
     let setCharacters: (story: Story) => void;
     [characters, setCharacters] = useState(defaultStory);
+
+    if (storyInfo) {
+        story = storyInfo.story;
+        characters = storyInfo.characters;
+    }
 
     let searchWords = characters?.chapters ?? [];
 
@@ -49,6 +59,7 @@ function App() {
                     <FrontDesk
                         label="Story"
                         setStory={setStory}
+                        setStoryInfo={setStoryInfo}
                     />
                 </div>
             )}
