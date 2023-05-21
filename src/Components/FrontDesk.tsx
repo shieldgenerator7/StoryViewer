@@ -33,7 +33,13 @@ function FrontDesk({ label, setStory }: Props) {
             <button
                 id="btnLoad"
                 onClick={() =>
-                    loadText((document.getElementById(`txtURL${label}`) as HTMLInputElement)?.value)
+                    loadText(
+                        (
+                            document.getElementById(
+                                `txtURL${label}`
+                            ) as HTMLInputElement
+                        )?.value
+                    )
                 }
             >
                 GO
