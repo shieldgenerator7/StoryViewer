@@ -151,6 +151,7 @@ function Home() {
                     ~ ~ ~
                 </p>
             )}
+            <div>Story Viewer &#169; 2023 shieldgenerator7</div>
         </>
     );
 }
