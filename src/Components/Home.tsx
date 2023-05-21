@@ -31,6 +31,7 @@ function Home() {
             Load.loadFile(searchURL, setStory, setStoryInfo);
         }
     }
+    let searchURLSplit = searchURL?.split("/") ?? [];
 
     if (storyInfo) {
         if (story != storyInfo.story) {
@@ -67,7 +68,12 @@ function Home() {
 
     return (
         <>
-            {!story && (
+            {searchURL && !story && (
+                <div>
+                    Loading {searchURLSplit[searchURLSplit.length - 1]}...
+                </div>
+            )}
+            {!searchURL && !story && (
                 <div>
                     <FrontDesk
                         label="Story"
