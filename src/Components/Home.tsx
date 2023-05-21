@@ -16,12 +16,12 @@ function Home() {
     [storyInfo, setStoryInfo] = useState(defaultStoryInfo);
     //Story
     let story: Story | undefined;
-    let setStory: (story: Story) => void;
+    let setStory: (story: Story | undefined) => void;
     const defaultStory: () => Story | undefined = () => undefined;
     [story, setStory] = useState(defaultStory);
     //Characters
     let characters: Story | undefined;
-    let setCharacters: (story: Story) => void;
+    let setCharacters: (story: Story | undefined) => void;
     [characters, setCharacters] = useState(defaultStory);
 
     const [searchParams, setSearchParams] = useSearchParams();
@@ -29,6 +29,16 @@ function Home() {
     if (searchURL) {
         if (!storyInfo && !story && !characters) {
             Load.loadFile(searchURL, setStory, setStoryInfo);
+        }
+    } else {
+        if (storyInfo) {
+            setStoryInfo(undefined);
+        }
+        if (story) {
+            setStory(undefined);
+        }
+        if (characters) {
+            setCharacters(undefined);
         }
     }
     let searchURLSplit = searchURL?.split("/") ?? [];
