@@ -1,15 +1,11 @@
 "use strict";
-import { Story } from "../System/Story";
-import { StoryInfo } from "../System/StoryInfo";
 
 interface Props {
     label: string;
-    setStory: (story: Story) => void;
-    setStoryInfo: (storyInfo: StoryInfo) => void;
     setSearchParams: (searchParams: URLSearchParams) => void;
 }
 
-function FrontDesk({ label, setStory, setStoryInfo, setSearchParams }: Props) {
+function FrontDesk({ label, setSearchParams }: Props) {
     const txtURLId = `txtURL${label}`;
 
     return (

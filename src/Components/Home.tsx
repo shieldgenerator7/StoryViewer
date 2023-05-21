@@ -87,8 +87,6 @@ function Home() {
                 <div>
                     <FrontDesk
                         label="Story"
-                        setStory={setStory}
-                        setStoryInfo={setStoryInfo}
                         setSearchParams={setSearchParams}
                     />
                 </div>
