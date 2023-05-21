@@ -34,7 +34,7 @@ function App() {
     // }
     // }
 
-    document.title = story
+    document.title = story.text
         ? story.chapters[0].title + " (Story Viewer)"
         : "Story Viewer";
 

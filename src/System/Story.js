@@ -1,4 +1,5 @@
 "use strict";
+import { Chapter } from "../System/Chapter";
 
 export class Story{
     constructor(text){
