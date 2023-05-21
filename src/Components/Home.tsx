@@ -6,12 +6,9 @@ import Paragraph from "../Components/Paragraph";
 import { StoryInfo } from "../System/StoryInfo";
 import { Story } from "../System/Story";
 import { Chapter } from "../System/Chapter";
+import * as Load from "../Utility/Load";
 
 function Home() {
-    const [searchParams] = useSearchParams();
-    if (true || searchParams.get("url")) {
-        console.log("url", searchParams.get("url"));
-    }
     //StoryInfo
     let storyInfo: StoryInfo | undefined;
     let setStoryInfo;
@@ -26,6 +23,14 @@ function Home() {
     let characters: Story | undefined;
     let setCharacters: (story: Story) => void;
     [characters, setCharacters] = useState(defaultStory);
+
+    const [searchParams, setSearchParams] = useSearchParams();
+    const searchURL = searchParams.get("url");
+    if (searchURL) {
+        if (!storyInfo && !story && !characters) {
+            Load.loadFile(searchURL, setStory, setStoryInfo);
+        }
+    }
 
     if (storyInfo) {
         if (story != storyInfo.story) {
