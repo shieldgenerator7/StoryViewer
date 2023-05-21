@@ -1,6 +1,6 @@
 "use strict";
 
-class Story{
+export class Story{
     constructor(text){
         this.chapters = [];
         this.text = text;

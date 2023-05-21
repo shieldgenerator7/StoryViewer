@@ -1,4 +1,5 @@
 "use strict";
+import { Story } from "./System/Story";
 
 interface Props {
     label: string;
@@ -28,7 +29,7 @@ function FrontDesk({ label, setStory }: Props) {
             <button
                 id="btnLoad"
                 onClick={() =>
-                    loadText(document.getElementById(`txtURL${label}`)?.value)
+                    loadText((document.getElementById(`txtURL${label}`) as HTMLInputElement)?.value)
                 }
             >
                 GO

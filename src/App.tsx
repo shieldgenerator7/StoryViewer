@@ -3,31 +3,36 @@ import "./App.css";
 // import "bootstrap/dist/css/bootstrap.css";
 import FrontDesk from "./Components/FrontDesk";
 import Paragraph from "./Components/Paragraph";
+import { Story } from "./System/Story";
+import { Chapter } from "./System/Chapter";
 
 function App() {
-    const [story, setStory] = useState(undefined);
-    const [characters, setCharacters] = useState(undefined);
+    let story: Story;
+    let setStory;
+    [story, setStory] = useState(undefined);
+    let characters: Story;
+    let setCharacters;
+    [characters, setCharacters] = useState(undefined);
 
     let searchWords = characters?.chapters ?? [];
 
     //2023-05-19: copied from https://stackoverflow.com/a/987376/2336212
-    function selectText(nodeId: string) {
-        const node = document.getElementById(nodeId);
-
-        if (document.body.createTextRange) {
-            const range = document.body.createTextRange();
-            range.moveToElementText(node);
-            range.select();
-        } else if (window.getSelection) {
-            const selection = window.getSelection();
-            const range = document.createRange();
-            range.selectNodeContents(node);
-            selection.removeAllRanges();
-            selection.addRange(range);
-        } else {
-            console.warn("Could not select text in node: Unsupported browser.");
-        }
-    }
+    // function selectText(nodeId: string) {
+    // const node = document.getElementById(nodeId);
+    // if (document.body.createTextRange) {
+    //     const range = document.body.createTextRange();
+    //     range.moveToElementText(node);
+    //     range.select();
+    // } else if (window.getSelection) {
+    //     const selection = window.getSelection();
+    //     const range = document.createRange();
+    //     range.selectNodeContents(node);
+    //     selection.removeAllRanges();
+    //     selection.addRange(range);
+    // } else {
+    //     console.warn("Could not select text in node: Unsupported browser.");
+    // }
+    // }
 
     document.title = story
         ? story.chapters[0].title + " (Story Viewer)"
@@ -51,11 +56,12 @@ function App() {
                     />
                 </div>
             )}
-            {story?.chapters.map((chapter, index) => (
+            {story?.chapters.map((chapter: Chapter, index: number) => (
                 <a
                     className="buttonLink"
                     href={"#" + "ch" + index}
                     style={{ left: index * 35 + 10 }}
+                    title={chapter.title}
                 >
                     Ch{index}
                 </a>
@@ -69,8 +75,8 @@ function App() {
                     End
                 </a>
             )}
-            {story?.chapters.map((chapter, chIndex) =>
-                chapter.lines.map((line, index) => (
+            {story?.chapters.map((chapter: Chapter, chIndex: number) =>
+                chapter.lines.map((line: string, index: number) => (
                     <>
                         {index == 0 && (
                             <h1
@@ -87,9 +93,9 @@ function App() {
                                         className="place"
                                         key={"spn" + chIndex + "-" + index}
                                         onClick={() => {
-                                            selectText(
-                                                "p" + chIndex + "-" + index
-                                            );
+                                            // selectText(
+                                            //     "p" + chIndex + "-" + index
+                                            // );
                                         }}
                                     >
                                         {chIndex}-{index}

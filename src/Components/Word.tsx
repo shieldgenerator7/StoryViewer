@@ -1,4 +1,5 @@
 "use strict";
+import { Chapter } from "./System/Chapter";
 
 interface Props {
     word: string;
@@ -27,7 +28,7 @@ function Word({ word, searchWords }: Props) {
                                 onClick={() =>
                                     alert(
                                         containedSearchWord.lines
-                                            .filter((line) => line)
+                                            .filter((line: string) => line)
                                             .join("\n")
                                     )
                                 }
@@ -40,7 +41,7 @@ function Word({ word, searchWords }: Props) {
             </>
         );
     }
-    return word;
+    return <>{word}</>;
 }
 
 export default Word;
