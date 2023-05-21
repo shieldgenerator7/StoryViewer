@@ -39,5 +39,8 @@ export function processJSON(
         storyInfo.characters = JSON.parse(txt);
         setStoryInfo?.(storyInfo);
     });
+    storyInfo.title = urls.title;
+    storyInfo.author = urls.author;
+    storyInfo.year = urls.year;
     setStoryInfo?.(storyInfo);
 }

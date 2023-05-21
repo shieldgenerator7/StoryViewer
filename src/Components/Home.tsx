@@ -67,7 +67,7 @@ function Home() {
     let searchWords = characters ?? [];
 
     document.title = story
-        ? (story as Story).chapters[0].title + " (Story Viewer)"
+        ? (story as Story).title + " (Story Viewer)"
         : "Story Viewer";
 
     return (
@@ -151,6 +151,14 @@ function Home() {
                     ~ ~ ~
                 </p>
             )}
+            {storyInfo?.author && (
+                <div>
+                    {storyInfo.title ?? story?.title ?? "Story"} &#169;{" "}
+                    {storyInfo.year ?? new Date().getFullYear()}{" "}
+                    {storyInfo.author}
+                </div>
+            )}
+            <div></div>
             <div>Story Viewer &#169; 2023 shieldgenerator7</div>
         </>
     );
