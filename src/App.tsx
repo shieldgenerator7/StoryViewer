@@ -9,10 +9,10 @@ import { Chapter } from "./System/Chapter";
 function App() {
     let story: Story;
     let setStory;
-    [story, setStory] = useState(undefined);
+    [story, setStory] = useState(new Story());
     let characters: Story;
     let setCharacters;
-    [characters, setCharacters] = useState(undefined);
+    [characters, setCharacters] = useState(new Story());
 
     let searchWords = characters?.chapters ?? [];
 
@@ -40,7 +40,7 @@ function App() {
 
     return (
         <>
-            {!story && (
+            {!story.text && (
                 <div>
                     <FrontDesk
                         label="Story"
@@ -48,7 +48,7 @@ function App() {
                     />
                 </div>
             )}
-            {!characters && (
+            {!characters.text && (
                 <div>
                     <FrontDesk
                         label="Characters"
@@ -56,7 +56,6 @@ function App() {
                     />
                 </div>
             )}
-            {story?.chapters.map((chapter: Chapter, index: number) => (
                 <a
                     className="buttonLink"
                     href={"#" + "ch" + index}
@@ -66,7 +65,9 @@ function App() {
                     Ch{index}
                 </a>
             ))}
-            {story && (
+            {story.text &&
+                story.chapters.map((chapter: Chapter, index: number) => (
+            {story.text && (
                 <a
                     className="buttonLink"
                     href={"#" + "chEnd"}
@@ -75,7 +76,6 @@ function App() {
                     End
                 </a>
             )}
-            {story?.chapters.map((chapter: Chapter, chIndex: number) =>
                 chapter.lines.map((line: string, index: number) => (
                     <>
                         {index == 0 && (
@@ -113,7 +113,9 @@ function App() {
                     </>
                 ))
             )}
-            {story && (
+            {story.text &&
+                story.chapters.map((chapter: Chapter, chIndex: number) =>
+            {story.text && (
                 <p
                     id="chEnd"
                     className="end"

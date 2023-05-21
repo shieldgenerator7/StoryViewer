@@ -1,5 +1,5 @@
 "use strict";
-import { Chapter } from "./System/Chapter";
+import { Chapter } from "../System/Chapter";
 
 interface Props {
     word: string;

@@ -7,5 +7,7 @@ export class Story{
         this.chapters = text.split('#')
             .filter(str => str?.trim())
             .map(text => new Chapter(text));
+        if (text) {
+        }
     }
 }

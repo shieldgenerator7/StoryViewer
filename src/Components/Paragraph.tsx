@@ -1,9 +1,10 @@
 "use strict";
-import Word from "./Word";
+import Word from "../Components/Word";
+import { Chapter } from "../System/Chapter";
 
 interface Props {
     paragraph: string;
-    searchWords: string[];
+    searchWords: Chapter[];
     id: string;
 }
 

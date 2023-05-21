@@ -1,5 +1,5 @@
 "use strict";
-import { Story } from "./System/Story";
+import { Story } from "../System/Story";
 
 interface Props {
     label: string;
