@@ -151,14 +151,16 @@ function Home() {
                     ~ ~ ~
                 </p>
             )}
-            {storyInfo?.author && (
+            {story && storyInfo?.author && (
                 <div className="copyright">
                     {storyInfo.title ?? story?.title ?? "Story"} &#169;{" "}
                     {storyInfo.year ?? new Date().getFullYear()}{" "}
                     {storyInfo.author}
                 </div>
             )}
-            <div className="copyright">Story Viewer &#169; 2023 shieldgenerator7</div>
+            <div className="copyright">
+                Story Viewer &#169; 2023 shieldgenerator7
+            </div>
         </>
     );
 }
