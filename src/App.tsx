@@ -67,14 +67,6 @@ function App() {
                     />
                 </div>
             )}
-            {!characters && (
-                <div>
-                    <FrontDesk
-                        label="Characters"
-                        setStory={setCharacters}
-                    />
-                </div>
-            )}
             {story?.chapters.map((chapter: Chapter, index: number) => (
                 <a
                     className="buttonLink"
