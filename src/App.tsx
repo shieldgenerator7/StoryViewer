@@ -3,16 +3,20 @@ import "./App.css";
 // import "bootstrap/dist/css/bootstrap.css";
 import FrontDesk from "./Components/FrontDesk";
 import Paragraph from "./Components/Paragraph";
+import { StoryInfo } from "./System/StoryInfo";
 import { Story } from "./System/Story";
 import { Chapter } from "./System/Chapter";
 
 function App() {
-    let story: Story;
-    let setStory;
-    [story, setStory] = useState(new Story());
-    let characters: Story;
-    let setCharacters;
-    [characters, setCharacters] = useState(new Story());
+    let story: Story | undefined;
+    let setStory: (story: Story) => void;
+    const defaultStory: () => Story | undefined = function () {
+        return undefined;
+    };
+    [story, setStory] = useState(defaultStory);
+    let characters: Story | undefined;
+    let setCharacters: (story: Story) => void;
+    [characters, setCharacters] = useState(defaultStory);
 
     let searchWords = characters?.chapters ?? [];
 
@@ -34,13 +38,13 @@ function App() {
     // }
     // }
 
-    document.title = story.text
-        ? story.chapters[0].title + " (Story Viewer)"
+    document.title = story
+        ? (story as Story).chapters[0].title + " (Story Viewer)"
         : "Story Viewer";
 
     return (
         <>
-            {!story.text && (
+            {!story && (
                 <div>
                     <FrontDesk
                         label="Story"
@@ -48,7 +52,7 @@ function App() {
                     />
                 </div>
             )}
-            {!characters.text && (
+            {!characters && (
                 <div>
                     <FrontDesk
                         label="Characters"
@@ -56,8 +60,6 @@ function App() {
                     />
                 </div>
             )}
-            {story.text &&
-                story.chapters.map((chapter: Chapter, index: number) => (
                     <a
                         className="buttonLink"
                         href={"#" + "ch" + index}
@@ -67,7 +69,8 @@ function App() {
                         Ch{index}
                     </a>
                 ))}
-            {story.text && (
+            {story?.chapters.map((chapter: Chapter, index: number) => (
+            {story && (
                 <a
                     className="buttonLink"
                     href={"#" + "chEnd"}
@@ -76,8 +79,6 @@ function App() {
                     End
                 </a>
             )}
-            {story.text &&
-                story.chapters.map((chapter: Chapter, chIndex: number) =>
                     chapter.lines.map((line: string, index: number) => (
                         <>
                             {index == 0 && (
@@ -115,7 +116,8 @@ function App() {
                         </>
                     ))
                 )}
-            {story.text && (
+            {story?.chapters.map((chapter: Chapter, chIndex: number) =>
+            {story && (
                 <p
                     id="chEnd"
                     className="end"
