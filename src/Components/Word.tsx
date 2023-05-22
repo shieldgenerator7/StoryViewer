@@ -13,17 +13,36 @@ function Word({ word, searchWords, setSearchTerm }: Props) {
             word.includes(search.name) ||
             search.nicknames.some((nickname: string) => word.includes(nickname))
     );
-    if (character) {
-        const name = word.includes(character.name)
-            ? character.name
-            : character.nicknames.find((nickname: string) =>
-                  word.includes(nickname)
-              );
+    let capital = undefined;
+    let startIndex = 0;
+    let endIndex = word.length;
+    for (let i = 0; i < word.length; i++) {
+        let char = word.charAt(i);
+        if (char == char.toUpperCase()) {
+            startIndex ||= i;
+            capital = char;
+        }
+        if (startIndex) {
+            //2023-05-21: copied from: https://stackoverflow.com/a/32567789/2336212
+            let isLetter = char.toLowerCase() != char.toUpperCase();
+            if (!isLetter) {
+                endIndex = i;
+                break;
+            }
+        }
+    }
+    if (character || capital) {
+        const name = character
+            ? word.includes(character.name)
+                ? character.name
+                : character.nicknames.find((nickname: string) =>
+                      word.includes(nickname)
+                  )
+            : word.substring(startIndex, endIndex);
         word = ` ${word} `;
         let sections = word.split(name);
         sections.splice(1, 0, name);
         sections = sections.filter((str) => str?.trim());
-        //console.log(sections);
         return (
             <>
                 {sections.map((section) => (
@@ -33,7 +52,7 @@ function Word({ word, searchWords, setSearchTerm }: Props) {
                             <a
                                 className="moreInfo"
                                 onClick={() =>
-                                    setSearchTerm(character.name)
+                                    setSearchTerm(character?.name ?? name)
                                 }
                             >
                                 {section}

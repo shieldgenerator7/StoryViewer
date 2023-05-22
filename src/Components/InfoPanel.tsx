@@ -20,7 +20,7 @@ function InfoPanel({ searchTerm, story, storyInfo }: Props) {
     );
     if (!character) {
         //TODO: allow searching terms that aren't predefined by the author
-        return <></>;
+        return <>Can't find character: {searchTerm}</>;
     }
     let foundList: any[] = [];
     story ??= storyInfo?.story;
