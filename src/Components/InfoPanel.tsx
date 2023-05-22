@@ -8,7 +8,7 @@ interface Props {
     storyInfo?: StoryInfo;
 }
 
-function InfoPanel({ searchTerm, story, storyInfo }: Props) {
+function InfoPanel({ searchTerm, storyInfo }: Props) {
     if (!searchTerm) {
         return <></>;
     }
