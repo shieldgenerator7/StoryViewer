@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 // import "bootstrap/dist/css/bootstrap.css";
 import FrontDesk from "../Components/FrontDesk";
 import Paragraph from "../Components/Paragraph";
+import InfoPanel from "../Components/InfoPanel";
 import { StoryInfo } from "../System/StoryInfo";
 import { Story } from "../System/Story";
 import { Chapter } from "../System/Chapter";
@@ -72,6 +73,7 @@ function Home() {
 
     return (
         <>
+            <InfoPanel />
             {searchURL && !story && (
                 <div>
                     Loading {searchURLSplit[searchURLSplit.length - 1]}...

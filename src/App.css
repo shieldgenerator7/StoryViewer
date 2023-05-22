@@ -32,6 +32,16 @@ p {
   background-color: white;
 }
 
+.infoPanel{
+  min-width:50%;
+  min-height:50%;
+  background-color: black;
+  border: solid green;
+  position:fixed;
+  right:5%;
+  top:1%;
+}
+
 .place{
   position: absolute;
   left:3%;
