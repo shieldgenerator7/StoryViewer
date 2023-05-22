@@ -53,6 +53,10 @@ function InfoPanel({ searchTerm, story, storyInfo }: Props) {
                         ))}
                     </>
                 )}
+                <span className="searchCount">
+                    {foundList.length} references found to{" "}
+                    {character?.name ?? searchTerm}
+                </span>
                 {foundList.map((entry: any) => (
                     <button
                         className="searchResult"

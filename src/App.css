@@ -51,8 +51,14 @@ p {
   overflow-wrap: normal;
   /* //2023-05-21: copied from https://www.w3schools.com/css/css3_shadows_box.asp */
   box-shadow: 0 8px 16px 0 rgb(255, 255, 255, 0.2), 0 12px 40px 0 rgba(255, 255, 255, 0.19);
+  text-align: left;
 }
 
+.searchCount{
+  font-size: medium;
+  font-weight: 700;
+  color:white;
+}
 .searchResult{
   max-height:8%;
   overflow: hidden;
