@@ -14,15 +14,15 @@ function Word({ word, searchWords, setSearchTerm }: Props) {
             search.nicknames.some((nickname: string) => word.includes(nickname))
     );
     let capital = undefined;
-    let startIndex = 0;
+    let startIndex = undefined;
     let endIndex = word.length;
     for (let i = 0; i < word.length; i++) {
         let char = word.charAt(i);
-        if (char == char.toUpperCase()) {
-            startIndex ||= i;
+        if (char == char.toUpperCase() && char.toUpperCase() != char.toLowerCase()) {
+            startIndex ??= i;
             capital = char;
         }
-        if (startIndex) {
+        if (startIndex != undefined) {
             //2023-05-21: copied from: https://stackoverflow.com/a/32567789/2336212
             let isLetter = char.toLowerCase() != char.toUpperCase();
             if (!isLetter) {
