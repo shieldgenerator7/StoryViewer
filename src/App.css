@@ -1,3 +1,7 @@
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   background: linear-gradient(#202020, black);
   background-attachment: fixed;
