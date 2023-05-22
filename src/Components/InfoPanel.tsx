@@ -51,11 +51,18 @@ function InfoPanel({ searchTerm, story, storyInfo }: Props) {
                     </p>
                 ))}
                 {foundList.map((entry: any) => (
-                    <p>
-                        <a className="searchResult" href={`#p${entry.chIndex}-${entry.pIndex}`}>
-                            {entry.paragraph}
-                        </a>
-                    </p>
+                    <button
+                        className="searchResult"
+                        onClick={() => {
+                            document
+                                .getElementById(
+                                    `p${entry.chIndex}-${entry.pIndex}`
+                                )
+                                ?.scrollIntoView();
+                        }}
+                    >
+                        {entry.paragraph}
+                    </button>
                 ))}
             </div>
         </>
