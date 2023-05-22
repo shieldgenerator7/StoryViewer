@@ -1,129 +1,129 @@
-html{
-  scroll-behavior:smooth;
+html {
+    scroll-behavior: smooth;
 }
 
-body{
-  background: linear-gradient(#202020, black);
-  background-attachment: fixed;
+body {
+    background: linear-gradient(#202020, black);
+    background-attachment: fixed;
 }
 
 #root {
-  width: 40%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+    width: 40%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
 }
 
 .url {
-  width: 90%;
+    width: 90%;
 }
 
 p {
-  width: 100%;
-  text-align: left;
+    width: 100%;
+    text-align: left;
 }
 
-.moreInfo{
-  color: inherit;
-  font-weight: inherit;
-   border-radius: 10%;
+.moreInfo {
+    color: inherit;
+    font-weight: inherit;
+    border-radius: 10%;
 }
 
-.moreInfo:hover{
-  color:black;
-  background-color: white;
+.moreInfo:hover {
+    color: black;
+    background-color: white;
 }
 
-.infoPanel{
-  padding: 2%;
-  height:90%;
-  max-width: 20%;
-  background-color: black;
-  /* border:  solid white; */
-  border-radius: 10px;
-  position:fixed;
-  right:0.5%;
-  top:1%;
-  box-shadow: black;
-  scroll-behavior: auto;
-  overflow-y:auto;
-  overflow-wrap: normal;
-  /* //2023-05-21: copied from https://www.w3schools.com/css/css3_shadows_box.asp */
-  box-shadow: 0 8px 16px 0 rgb(255, 255, 255, 0.2), 0 12px 40px 0 rgba(255, 255, 255, 0.19);
-  text-align: left;
+.infoPanel {
+    padding: 2%;
+    height: 90%;
+    max-width: 20%;
+    background-color: black;
+    /* border:  solid white; */
+    border-radius: 10px;
+    position: fixed;
+    right: 0.5%;
+    top: 1%;
+    box-shadow: black;
+    scroll-behavior: auto;
+    overflow-y: auto;
+    overflow-wrap: normal;
+    /* //2023-05-21: copied from https://www.w3schools.com/css/css3_shadows_box.asp */
+    box-shadow: 0 8px 16px 0 rgb(255, 255, 255, 0.2),
+        0 12px 40px 0 rgba(255, 255, 255, 0.19);
+    text-align: left;
 }
 
-.searchCount{
-  font-size: medium;
-  font-weight: 700;
-  color:white;
+.searchCount {
+    font-size: medium;
+    font-weight: 700;
+    color: white;
 }
-.searchResult{
-  max-height:8%;
-  overflow: hidden;
-  padding: 1%;
-  margin:2%;
-  color: lightgray;
-  background-color: rgb(80,80,80,.5);
-  width:90%;
-  border-radius: 5px;
-  font-size: small;
-  text-align: left;
-  
+.searchResult {
+    max-height: 8%;
+    overflow: hidden;
+    padding: 1%;
+    margin: 2%;
+    color: lightgray;
+    background-color: rgb(80, 80, 80, 0.5);
+    width: 90%;
+    border-radius: 5px;
+    font-size: small;
+    text-align: left;
 }
-.searchResult:hover{
-  background-color: white;
-  color:black;
+.searchResult:hover {
+    background-color: white;
+    color: black;
 }
-.searchResultIndex{
-  padding-left:3px;
-  padding-right:3px;
-  font-weight: 400;
-  margin-right:5%;
-}
-
-.place{
-  position: absolute;
-  left:3%;
-  user-select: none;
-  z-index: 5;
-  border-radius: 10%;
-  background:black;
-  padding: 0.3%;
-  margin:0%;
+.searchResultIndex {
+    padding-left: 3px;
+    padding-right: 3px;
+    font-weight: 400;
+    margin-right: 5%;
 }
 
-.place:hover{
-  color: black;
-  background: white;
+.place {
+    position: absolute;
+    left: 3%;
+    user-select: none;
+    z-index: 5;
+    border-radius: 10%;
+    background: black;
+    padding: 0.3%;
+    margin: 0%;
 }
 
-.buttonLink{
-  position:fixed;
-  top: 1%;
-  border: none;
-  background:black;
-  z-index: 10;
-  border-radius: 10%;
-  color: lightgray;
-  font-weight: 200;
-  padding: 0.3%;
-  margin:0%;
+.place:hover {
+    color: black;
+    background: white;
 }
 
-.buttonLink:hover{
-  color: black;
-  background: white;
+.buttonLink {
+    position: fixed;
+    top: 1%;
+    border: none;
+    background: black;
+    z-index: 10;
+    border-radius: 10%;
+    color: lightgray;
+    font-weight: 200;
+    padding: 0.3%;
+    margin: 0%;
 }
 
-.end{
-  text-align: center;
-  font-weight: 1000;
+.buttonLink:hover {
+    color: black;
+    background: white;
 }
 
-.copyright{
-  margin-top:5%;
-  font-weight:100;
-  font-size:smaller;
+.end {
+    text-align: center;
+    font-weight: 1000;
+}
+
+.copyright {
+    margin-top: 5%;
+    font-weight: 100;
+    font-size: smaller;
 }

@@ -78,7 +78,11 @@ function Home() {
 
     return (
         <>
-            <InfoPanel searchTerm={searchTerm} story={story} storyInfo={storyInfo} />
+            <InfoPanel
+                searchTerm={searchTerm}
+                story={story}
+                storyInfo={storyInfo}
+            />
             {searchURL && !story && (
                 <div>
                     Loading {searchURLSplit[searchURLSplit.length - 1]}...
