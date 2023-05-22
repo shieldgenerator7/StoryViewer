@@ -133,6 +133,7 @@ function Home() {
                                             Select.selectText(
                                                 "p" + chIndex + "-" + index
                                             );
+                                            setSearchTerm(undefined);
                                         }}
                                     >
                                         {chIndex}-{index}
