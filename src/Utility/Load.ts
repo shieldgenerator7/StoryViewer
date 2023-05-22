@@ -5,8 +5,8 @@ import { Story } from "../System/Story";
 
 export function loadFile(
     url: string,
-    setStory: (story: Story) => void,
-    setStoryInfo: (storyInfo: StoryInfo) => void
+    setStory: (story: Story, callback?: Function) => void,
+    setStoryInfo: (storyInfo: StoryInfo, callback?: Function) => void
 ) {
     if (url) {
         Fetch.fetchFile(url, (text: string) => {
@@ -19,21 +19,24 @@ export function loadFile(
     }
 }
 
-export function processMD(text: string, setStory: (story: Story) => void) {
-    setStory(new Story(text));
+export function processMD(
+    text: string,
+    setStory: (story: Story, callback?: Function) => void
+) {
+    setStory(new Story(text), postLoadScroll);
 }
 
 export function processJSON(
     text: string,
     url: string,
-    setStoryInfo: (storyInfo: StoryInfo) => void
+    setStoryInfo: (storyInfo: StoryInfo, callback?: Function) => void
 ) {
     let storyInfo = new StoryInfo();
     let urls = JSON.parse(text);
     let baseURL = url.substring(0, url.lastIndexOf("/")) + "/";
     Fetch.fetchFile(baseURL + urls.story, (txt: string) => {
         storyInfo.story = new Story(txt);
-        setStoryInfo?.(storyInfo);
+        setStoryInfo?.(storyInfo, postLoadScroll);
     });
     Fetch.fetchFile(baseURL + urls.characters, (txt: string) => {
         storyInfo.characters = JSON.parse(txt);
@@ -43,4 +46,12 @@ export function processJSON(
     storyInfo.author = urls.author;
     storyInfo.year = urls.year;
     setStoryInfo?.(storyInfo);
+}
+
+function postLoadScroll() {
+    if (window.location.hash) {
+        let hashSplit = window.location.hash.split("#");
+        let id = hashSplit[hashSplit.length - 1];
+        document.getElementById(id)?.scrollIntoView();
+    }
 }
