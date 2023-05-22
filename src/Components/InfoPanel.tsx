@@ -61,6 +61,7 @@ function InfoPanel({ searchTerm, story, storyInfo }: Props) {
                                 ?.scrollIntoView();
                         }}
                     >
+                        <span className="searchResultIndex">{entry.chIndex}-{entry.pIndex}</span>
                         {entry.paragraph}
                     </button>
                 ))}

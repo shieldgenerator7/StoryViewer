@@ -54,7 +54,7 @@ p {
 }
 
 .searchResult{
-  max-height:10%;
+  max-height:8%;
   overflow: hidden;
   padding: 1%;
   margin:2%;
@@ -63,10 +63,18 @@ p {
   width:90%;
   border-radius: 5px;
   font-size: small;
+  text-align: left;
+  
 }
 .searchResult:hover{
   background-color: white;
   color:black;
+}
+.searchResultIndex{
+  padding-left:3px;
+  padding-right:3px;
+  font-weight: 400;
+  margin-right:5%;
 }
 
 .place{
