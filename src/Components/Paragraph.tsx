@@ -6,9 +6,10 @@ interface Props {
     paragraph: string;
     searchWords: Chapter[];
     id: string;
+    setSearchTerm: (searchTerm: string | undefined) => void;
 }
 
-function Paragraph({ paragraph, searchWords, id }: Props) {
+function Paragraph({ paragraph, searchWords, id, setSearchTerm }: Props) {
     const words = paragraph.split(" ");
     return (
         <>
@@ -19,6 +20,7 @@ function Paragraph({ paragraph, searchWords, id }: Props) {
                             key={index}
                             word={word}
                             searchWords={searchWords}
+                            setSearchTerm={setSearchTerm}
                         />{" "}
                     </>
                 ))}

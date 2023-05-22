@@ -26,6 +26,11 @@ function Home() {
     let setCharacters: (story: [] | undefined) => void;
     const defaultCharacters: () => [] | undefined = () => undefined;
     [characters, setCharacters] = useState(defaultCharacters);
+    //SearchTerm
+    let searchTerm: string | undefined;
+    let setSearchTerm: (searchTerm: string | undefined) => void;
+    const defaultSearchTerm: () => string | undefined = () => undefined;
+    [searchTerm, setSearchTerm] = useState(defaultSearchTerm);
 
     const [searchParams, setSearchParams] = useSearchParams();
     const searchURL = searchParams.get("url");
@@ -73,7 +78,7 @@ function Home() {
 
     return (
         <>
-            <InfoPanel />
+            <InfoPanel searchTerm={searchTerm} storyInfo={storyInfo} />
             {searchURL && !story && (
                 <div>
                     Loading {searchURLSplit[searchURLSplit.length - 1]}...
@@ -137,6 +142,7 @@ function Home() {
                                     key={"p" + chIndex + "-" + index}
                                     paragraph={line}
                                     searchWords={searchWords}
+                                    setSearchTerm={setSearchTerm}
                                     id={"p" + chIndex + "-" + index}
                                 />
                                 <p></p>

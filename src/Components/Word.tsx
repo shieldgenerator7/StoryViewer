@@ -3,9 +3,10 @@
 interface Props {
     word: string;
     searchWords: any[];
+    setSearchTerm: (searchTerm: string | undefined) => void;
 }
 
-function Word({ word, searchWords }: Props) {
+function Word({ word, searchWords, setSearchTerm }: Props) {
     word = word.trim();
     const character = searchWords.find(
         (search) =>
@@ -32,14 +33,7 @@ function Word({ word, searchWords }: Props) {
                             <a
                                 className="moreInfo"
                                 onClick={() =>
-                                    alert(
-                                        Object.keys(character)
-                                            .map(
-                                                (key) =>
-                                                    `${key}: ${character[key]}`
-                                            )
-                                            .join("\n")
-                                    )
+                                    setSearchTerm(character.name)
                                 }
                             >
                                 {section}
