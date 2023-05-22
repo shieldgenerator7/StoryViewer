@@ -1,5 +1,6 @@
 "use strict";
 import { Story } from "../System/Story";
+import { Chapter } from "../System/Chapter";
 import { StoryInfo } from "../System/StoryInfo";
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
     storyInfo?: StoryInfo;
 }
 
-function InfoPanel({ searchTerm, storyInfo }: Props) {
+function InfoPanel({ searchTerm, story, storyInfo }: Props) {
     if (!searchTerm) {
         return <></>;
     }
@@ -16,17 +17,46 @@ function InfoPanel({ searchTerm, storyInfo }: Props) {
         (char: any) =>
             char.name == searchTerm || char.nicknames.includes(searchTerm)
     );
-    if (!character) {//TODO: allow searching terms that aren't predefined by the author
+    if (!character) {
+        //TODO: allow searching terms that aren't predefined by the author
         return <></>;
     }
+    let foundList: any[] = [];
+    story ??= storyInfo?.story;
+    story?.chapters.forEach((chapter: Chapter, chIndex: number) => {
+        chapter.lines.forEach((paragraph: string, pIndex: number) => {
+            let found =
+                paragraph.includes(character.name) ||
+                character.nicknames.some((nickname: string) =>
+                    paragraph.includes(nickname)
+                );
+            if (found) {
+                foundList.push({
+                    chIndex: chIndex,
+                    pIndex: pIndex,
+                    paragraph: paragraph,
+                });
+            }
+        });
+    });
+
     return (
         <>
-            <div className="infoPanel"><p>{character.name}</p><p>{character.description}</p>
-                {Object.keys(character)
-                    .map(
-                        (key) =>
-                            <p>{key}: {character[key]}</p>
-                    )}
+            <div className="infoPanel">
+                <p>{character.name}</p>
+                <p>{character.description}</p>
+                {Object.keys(character).map((key) => (
+                    <p>
+                        {key}: {character[key]}
+                    </p>
+                ))}
+                {foundList.map((entry: any) => (
+                    <p>
+                        <a className="searchResult" href={`#p${entry.chIndex}-${entry.pIndex}`}>
+                            {entry.paragraph}
+                        </a>
+                    </p>
+                ))}
             </div>
         </>
     );
