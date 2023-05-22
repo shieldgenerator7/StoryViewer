@@ -3,6 +3,7 @@ import { Story } from "../System/Story";
 import { Chapter } from "../System/Chapter";
 import { StoryInfo } from "../System/StoryInfo";
 import * as Select from "../Utility/Select";
+import { defaultCharacter } from "../System/Character";
 
 interface Props {
     searchTerm?: string;
@@ -46,11 +47,15 @@ function InfoPanel({ searchTerm, story, storyInfo }: Props) {
                 {character && (
                     <>
                         <p>{character.description}</p>
-                        {Object.keys(character).map((key) => (
-                            <p>
-                                {key}: {character[key]}
-                            </p>
-                        ))}
+                        {Object.keys(character)
+                            .filter(
+                                (key: string) => !defaultCharacter.hasKey(key)
+                            )
+                            .map((key) => (
+                                <p>
+                                    {key}: {character[key]}
+                                </p>
+                            ))}
                     </>
                 )}
                 <span className="searchCount">
