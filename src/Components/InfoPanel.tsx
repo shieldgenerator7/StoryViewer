@@ -18,19 +18,17 @@ function InfoPanel({ searchTerm, story, storyInfo }: Props) {
         (char: any) =>
             char.name == searchTerm || char.nicknames.includes(searchTerm)
     );
-    if (!character) {
-        //TODO: allow searching terms that aren't predefined by the author
-        return <>Can't find character: {searchTerm}</>;
-    }
     let foundList: any[] = [];
     story ??= storyInfo?.story;
     story?.chapters.forEach((chapter: Chapter, chIndex: number) => {
         chapter.lines.forEach((paragraph: string, pIndex: number) => {
             let found =
-                paragraph.includes(character.name) ||
-                character.nicknames.some((nickname: string) =>
-                    paragraph.includes(nickname)
-                );
+                (character &&
+                    (paragraph.includes(character.name) ||
+                        character.nicknames.some((nickname: string) =>
+                            paragraph.includes(nickname)
+                        ))) ||
+                paragraph.includes(searchTerm);
             if (found) {
                 foundList.push({
                     chIndex: chIndex,
@@ -44,13 +42,17 @@ function InfoPanel({ searchTerm, story, storyInfo }: Props) {
     return (
         <>
             <div className="infoPanel">
-                <p>{character.name}</p>
-                <p>{character.description}</p>
-                {Object.keys(character).map((key) => (
-                    <p>
-                        {key}: {character[key]}
-                    </p>
-                ))}
+                <p>{character?.name ?? searchTerm}</p>
+                {character && (
+                    <>
+                        <p>{character.description}</p>
+                        {Object.keys(character).map((key) => (
+                            <p>
+                                {key}: {character[key]}
+                            </p>
+                        ))}
+                    </>
+                )}
                 {foundList.map((entry: any) => (
                     <button
                         className="searchResult"
