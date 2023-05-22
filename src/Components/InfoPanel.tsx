@@ -2,6 +2,7 @@
 import { Story } from "../System/Story";
 import { Chapter } from "../System/Chapter";
 import { StoryInfo } from "../System/StoryInfo";
+import * as Select from "../Utility/Select";
 
 interface Props {
     searchTerm?: string;
@@ -54,14 +55,14 @@ function InfoPanel({ searchTerm, story, storyInfo }: Props) {
                     <button
                         className="searchResult"
                         onClick={() => {
-                            document
-                                .getElementById(
-                                    `p${entry.chIndex}-${entry.pIndex}`
-                                )
-                                ?.scrollIntoView();
+                            let pId = `p${entry.chIndex}-${entry.pIndex}`;
+                            document.getElementById(pId)?.scrollIntoView();
+                            Select.selectText(pId);
                         }}
                     >
-                        <span className="searchResultIndex">{entry.chIndex}-{entry.pIndex}</span>
+                        <span className="searchResultIndex">
+                            {entry.chIndex}-{entry.pIndex}
+                        </span>
                         {entry.paragraph}
                     </button>
                 ))}
