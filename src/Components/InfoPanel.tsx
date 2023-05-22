@@ -25,7 +25,7 @@ function InfoPanel({ searchTerm, story, storyInfo }: Props) {
                 {Object.keys(character)
                     .map(
                         (key) =>
-                            <p>`${key}: ${character[key]}`</p>
+                            <p>{key}: {character[key]}</p>
                     )}
             </div>
         </>
