@@ -4,7 +4,7 @@ body{
 }
 
 #root {
-  width: 50%;
+  width: 40%;
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -23,7 +23,6 @@ p {
 .moreInfo{
   color: inherit;
   font-weight: inherit;
-  /* border: solid white; */
    border-radius: 10%;
 }
 
@@ -33,13 +32,21 @@ p {
 }
 
 .infoPanel{
-  min-width:50%;
-  min-height:50%;
+  padding: 2%;
+  height:90%;
+  max-width: 20%;
   background-color: black;
-  border: solid green;
+  /* border:  solid white; */
+  border-radius: 10px;
   position:fixed;
-  right:5%;
+  right:0.5%;
   top:1%;
+  box-shadow: black;
+  scroll-behavior: auto;
+  overflow-y:auto;
+  overflow-wrap: normal;
+  /* //2023-05-21: copied from https://www.w3schools.com/css/css3_shadows_box.asp */
+  box-shadow: 0 8px 16px 0 rgb(255, 255, 255, 0.2), 0 12px 40px 0 rgba(255, 255, 255, 0.19);
 }
 
 .place{
