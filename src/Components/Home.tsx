@@ -10,6 +10,8 @@ import { Chapter } from "../System/Chapter";
 import * as Load from "../Utility/Load";
 import * as Select from "../Utility/Select";
 import { version } from "../version";
+import * as React from "react";
+import { jump } from "../Utility/Jump";
 
 function Home() {
     //StoryInfo
@@ -76,6 +78,23 @@ function Home() {
     document.title = story
         ? (story as Story).title + " (Story Viewer)"
         : "Story Viewer";
+
+    //2023-05-30: copied from https://stackoverflow.com/a/56394177/2336212
+    const jumped = React.useRef(false);
+    React.useEffect(() => {
+        if (jumped.current) {
+            return;
+        }
+
+        let hash = window.location.hash;
+        if (hash) {
+            let nodeId = hash.substring(1);
+            if (nodeId && document.getElementById(nodeId)) {
+                jump(nodeId);
+                jumped.current = true;
+            }
+        }
+    }, [story, storyInfo]);
 
     return (
         <>
