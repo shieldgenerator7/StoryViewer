@@ -86,6 +86,7 @@ function Home() {
             return;
         }
 
+        //Post-load scroll
         let hash = window.location.hash;
         if (hash) {
             let nodeId = hash.substring(1);

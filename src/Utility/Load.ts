@@ -23,7 +23,7 @@ export function processMD(
     text: string,
     setStory: (story: Story, callback?: Function) => void
 ) {
-    setStory(new Story(text), postLoadScroll);
+    setStory(new Story(text));
 }
 
 export function processJSON(
@@ -36,7 +36,7 @@ export function processJSON(
     let baseURL = url.substring(0, url.lastIndexOf("/")) + "/";
     Fetch.fetchFile(baseURL + urls.story, (txt: string) => {
         storyInfo.story = new Story(txt);
-        setStoryInfo?.(storyInfo, postLoadScroll);
+        setStoryInfo?.(storyInfo);
     });
     Fetch.fetchFile(baseURL + urls.characters, (txt: string) => {
         storyInfo.characters = JSON.parse(txt);
@@ -46,12 +46,4 @@ export function processJSON(
     storyInfo.author = urls.author;
     storyInfo.year = urls.year;
     setStoryInfo?.(storyInfo);
-}
-
-function postLoadScroll() {
-    if (window.location.hash) {
-        let hashSplit = window.location.hash.split("#");
-        let id = hashSplit[hashSplit.length - 1];
-        document.getElementById(id)?.scrollIntoView();
-    }
 }
