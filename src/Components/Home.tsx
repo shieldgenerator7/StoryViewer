@@ -82,6 +82,7 @@ function Home() {
                 searchTerm={searchTerm}
                 story={story}
                 storyInfo={storyInfo}
+                setSearchTerm={setSearchTerm}
             />
             {searchURL && !story && (
                 <div>
