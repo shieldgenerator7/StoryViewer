@@ -155,8 +155,13 @@ function Home() {
                                         className="place"
                                         key={"spn" + chIndex + "-" + index}
                                         onClick={() => {
-                                            Select.selectText(
-                                                "p" + chIndex + "-" + index
+                                            let id =
+                                                "p" + chIndex + "-" + index;
+                                            Select.selectText(id);
+                                            history.pushState(
+                                                undefined,
+                                                storyInfo?.title,
+                                                `#${id}`
                                             );
                                         }}
                                     >
