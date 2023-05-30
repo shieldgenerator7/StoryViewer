@@ -9,7 +9,7 @@ interface Props {
     searchTerm?: string;
     story?: Story;
     storyInfo?: StoryInfo;
-    setSearchTerm?: (searchTerm: string) => void;
+    setSearchTerm?: (searchTerm: string | undefined) => void;
 }
 
 function InfoPanel({ searchTerm, story, storyInfo, setSearchTerm }: Props) {
@@ -47,7 +47,7 @@ function InfoPanel({ searchTerm, story, storyInfo, setSearchTerm }: Props) {
                 {setSearchTerm && (
                     <button
                         className="closeX"
-                        onClick={() => setSearchTerm("")}
+                        onClick={() => setSearchTerm(undefined)}
                     >
                         X
                     </button>
