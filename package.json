@@ -1,7 +1,7 @@
 {
   "name": "storyviewer",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://shieldgenerator7.github.io/StoryViewer/",
   "type": "module",
   "scripts": {
@@ -9,7 +9,7 @@
     "deploy": "gh-pages -d dist",
     "deployonly": "gh-pages -d dist",
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "genversion --es6 --semi src/version.js && tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -28,6 +28,7 @@
     "eslint": "^8.38.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
+    "genversion": "^3.1.1",
     "gh-pages": "^5.0.0",
     "typescript": "^5.0.2",
     "vite": "^4.3.2"

@@ -9,6 +9,7 @@ import { Story } from "../System/Story";
 import { Chapter } from "../System/Chapter";
 import * as Load from "../Utility/Load";
 import * as Select from "../Utility/Select";
+import { version } from "../version";
 
 function Home() {
     //StoryInfo
@@ -173,7 +174,7 @@ function Home() {
                 </div>
             )}
             <div className="copyright">
-                Story Viewer &#169; 2023 shieldgenerator7
+                Story Viewer {version} &#169; 2023 shieldgenerator7
             </div>
         </>
     );
