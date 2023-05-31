@@ -2,6 +2,7 @@
 import * as Fetch from "../Utility/Fetch";
 import { StoryInfo } from "../System/StoryInfo";
 import { Story } from "../System/Story";
+import { Character } from "../System/Character";
 
 export function loadFile(
     url: string,
@@ -41,6 +42,11 @@ export function processJSON(
     if (urls.characters) {
         Fetch.fetchFile(baseURL + urls.characters, (txt: string) => {
             storyInfo.characters = JSON.parse(txt);
+            storyInfo.characters.forEach((character: Character) => {
+                if (character.portrait) {
+                    character.portraitURL = baseURL + character.portrait;
+                }
+            });
             setStoryInfo?.(storyInfo);
         });
     }

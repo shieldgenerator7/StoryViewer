@@ -52,6 +52,14 @@ function InfoPanel({ searchTerm, story, storyInfo, setSearchTerm }: Props) {
                         X
                     </button>
                 )}
+                (character?.portraitURL && (
+                <>
+                    <img
+                        className="portrait"
+                        src={character.portraitURL}
+                    ></img>
+                </>
+                ))
                 <p>{character?.name ?? searchTerm}</p>
                 {character && (
                     <>
