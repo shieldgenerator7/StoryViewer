@@ -144,9 +144,10 @@ p {
 }
 
 .imageCredit{
-    font-size: smaller;
+    font-size: xx-small;
     color: white;
     text-align: left;
+    display: block;
 }
 
 .copyright {

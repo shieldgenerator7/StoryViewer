@@ -53,15 +53,21 @@ function InfoPanel({ searchTerm, story, storyInfo, setSearchTerm }: Props) {
                     </button>
                 )}
                 {character?.portraitURL?.trim() && (
-                    <div>
-                        <img
-                            className="portrait"
-                            src={character.portraitURL}
-                        ></img>
-                        {character.portraitCredit?.trim() && (
-                            <span className="imageCredit">Source: {character.portraitCredit}</span>
-                        )}
-                    </div>
+                    <>
+                        <div>
+                            <img
+                                className="portrait"
+                                src={character.portraitURL}
+                            ></img>
+                        </div>
+                        <div>
+                            {character.portraitCredit?.trim() && (
+                                <span className="imageCredit">
+                                    Source: {character.portraitCredit}
+                                </span>
+                            )}
+                        </div>
+                    </>
                 )}
                 <p>{character?.name ?? searchTerm}</p>
                 {character && (
