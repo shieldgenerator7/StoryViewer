@@ -72,7 +72,8 @@ p {
 
 .portrait {
     max-width: 90%;
-    border: solid white 0.5em;
+    border: solid white 0.15em;
+    background: linear-gradient(#282828, #101010);
 }
 
 .searchCount {
