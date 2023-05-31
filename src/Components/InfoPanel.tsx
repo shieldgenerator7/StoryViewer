@@ -52,7 +52,7 @@ function InfoPanel({ searchTerm, story, storyInfo, setSearchTerm }: Props) {
                         X
                     </button>
                 )}
-                {character?.portraitURL && (
+                {character?.portraitURL?.trim() && (
                     <img
                         className="portrait"
                         src={character.portraitURL}
