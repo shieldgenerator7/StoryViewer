@@ -16,7 +16,7 @@ function InfoPanel({ searchTerm, story, storyInfo, setSearchTerm }: Props) {
     if (!searchTerm) {
         return <></>;
     }
-    let character = storyInfo?.characters.find(
+    let character = storyInfo?.characters?.find(
         (char: any) =>
             char.name == searchTerm || char.nicknames.includes(searchTerm)
     );

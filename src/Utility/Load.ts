@@ -38,10 +38,12 @@ export function processJSON(
         storyInfo.story = new Story(txt);
         setStoryInfo?.(storyInfo);
     });
-    Fetch.fetchFile(baseURL + urls.characters, (txt: string) => {
-        storyInfo.characters = JSON.parse(txt);
-        setStoryInfo?.(storyInfo);
-    });
+    if (urls.characters) {
+        Fetch.fetchFile(baseURL + urls.characters, (txt: string) => {
+            storyInfo.characters = JSON.parse(txt);
+            setStoryInfo?.(storyInfo);
+        });
+    }
     storyInfo.title = urls.title;
     storyInfo.author = urls.author;
     storyInfo.year = urls.year;
