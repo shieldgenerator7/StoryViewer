@@ -143,6 +143,12 @@ p {
     font-weight: 1000;
 }
 
+.imageCredit{
+    font-size: smaller;
+    color: white;
+    text-align: left;
+}
+
 .copyright {
     margin-top: 5%;
     font-weight: 100;
