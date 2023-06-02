@@ -182,6 +182,8 @@ function Home() {
                     </>
                 ))
             )}
+            <div id="divParagraphs">
+            </div>
             {story && (
                 <p
                     id="chEnd"
