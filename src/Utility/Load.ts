@@ -53,5 +53,6 @@ export function processJSON(
     storyInfo.title = urls.title;
     storyInfo.author = urls.author;
     storyInfo.year = urls.year;
+    storyInfo.lastupdated = urls.lastupdated;
     setStoryInfo?.(storyInfo);
 }
