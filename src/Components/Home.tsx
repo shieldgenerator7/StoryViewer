@@ -190,6 +190,11 @@ function Home() {
                     ~ ~ ~
                 </p>
             )}
+            {story && storyInfo?.lastupdated && (
+                <div className="copyright">
+                    Last Updated: {storyInfo.lastupdated}
+                </div>
+            )}
             {story && storyInfo?.author && (
                 <div className="copyright">
                     {storyInfo.title ?? story?.title ?? "Story"} &#169;{" "}

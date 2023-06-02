@@ -7,5 +7,6 @@ export class StoryInfo {
         this.title = undefined;
         this.author = undefined;
         this.year = undefined;
+        this.lastupdated = undefined;
     }
 }
