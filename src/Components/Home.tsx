@@ -193,7 +193,7 @@ function Home() {
                 </p>
             )}
             {story && storyInfo?.lastupdated && (
-                <div className="copyright">
+                <div className="lastupdated">
                     Last Updated: {storyInfo.lastupdated}
                 </div>
             )}

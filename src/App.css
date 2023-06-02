@@ -143,6 +143,14 @@ p {
     font-weight: 1000;
 }
 
+.lastupdated{
+    position: absolute;
+    left: 1em;
+    bottom: 1em;
+    font-weight: 100;
+    font-size: smaller;
+}
+
 .imageCredit {
     font-size: xx-small;
     color: white;
