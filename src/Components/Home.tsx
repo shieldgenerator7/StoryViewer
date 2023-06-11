@@ -138,51 +138,51 @@ function Home() {
                     End
                 </a>
             )}
-            {story?.chapters.map((chapter: Chapter, chIndex: number) =>
-                chapter.lines.map((line: string, index: number) => (
-                    <>
-                        {index == 0 && (
-                            <h1
-                                id={"ch" + chIndex}
-                                key={chIndex + "-" + index}
-                            >
-                                {line}
-                            </h1>
-                        )}
-                        {index > 0 && (
-                            <>
-                                {line?.trim().length > 0 && (
-                                    <span
-                                        className="place"
-                                        key={"spn" + chIndex + "-" + index}
-                                        onClick={() => {
-                                            let id =
-                                                "p" + chIndex + "-" + index;
-                                            Select.selectText(id);
-                                            history.pushState(
-                                                undefined,
-                                                storyInfo?.title,
-                                                `#${id}`
-                                            );
-                                        }}
-                                    >
-                                        {chIndex}-{index}
-                                    </span>
-                                )}
-                                <Paragraph
-                                    key={"p" + chIndex + "-" + index}
-                                    paragraph={line}
-                                    searchWords={searchWords}
-                                    setSearchTerm={setSearchTerm}
-                                    id={"p" + chIndex + "-" + index}
-                                />
-                                <p></p>
-                            </>
-                        )}
-                    </>
-                ))
-            )}
             <div id="divParagraphs">
+                {story?.chapters.map((chapter: Chapter, chIndex: number) =>
+                    chapter.lines.map((line: string, index: number) => (
+                        <>
+                            {index == 0 && (
+                                <h1
+                                    id={"ch" + chIndex}
+                                    key={chIndex + "-" + index}
+                                >
+                                    {line}
+                                </h1>
+                            )}
+                            {index > 0 && (
+                                <>
+                                    {line?.trim().length > 0 && (
+                                        <span
+                                            className="place"
+                                            key={"spn" + chIndex + "-" + index}
+                                            onClick={() => {
+                                                let id =
+                                                    "p" + chIndex + "-" + index;
+                                                Select.selectText(id);
+                                                history.pushState(
+                                                    undefined,
+                                                    storyInfo?.title,
+                                                    `#${id}`
+                                                );
+                                            }}
+                                        >
+                                            {chIndex}-{index}
+                                        </span>
+                                    )}
+                                    <Paragraph
+                                        key={"p" + chIndex + "-" + index}
+                                        paragraph={line}
+                                        searchWords={searchWords}
+                                        setSearchTerm={setSearchTerm}
+                                        id={"p" + chIndex + "-" + index}
+                                    />
+                                    <p></p>
+                                </>
+                            )}
+                        </>
+                    ))
+                )}
             </div>
             {story && (
                 <p
