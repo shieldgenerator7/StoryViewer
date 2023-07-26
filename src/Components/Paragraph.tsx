@@ -1,4 +1,5 @@
 "use strict";
+import { Markup } from "interweave";
 import Word from "../Components/Word";
 import { Chapter } from "../System/Chapter";
 import { mmd } from "../Utility/mmd";
@@ -16,7 +17,8 @@ function Paragraph({ paragraph, searchWords, id, setSearchTerm }: Props) {
     return (
         <>
             <p id={id}>
-                {words.map((word, index) => (
+                <Markup content={mmdParagraph}></Markup>
+                {/* {words.map((word, index) => (
                     <>
                         <Word
                             key={index}
@@ -25,7 +27,7 @@ function Paragraph({ paragraph, searchWords, id, setSearchTerm }: Props) {
                             setSearchTerm={setSearchTerm}
                         />{" "}
                     </>
-                ))}
+                ))} */}
             </p>
         </>
     );
