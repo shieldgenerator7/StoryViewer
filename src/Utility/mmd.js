@@ -1,6 +1,7 @@
 "use strict";
 
 //2023-07-25: copied from https://github.com/p01/mmd.js
+//mmd.js converts Markdown format to HTML format
 
 // MIT License
 
@@ -24,7 +25,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-export function mmd(s) {
+export function mmd(s, addP = false) {
     var h = '';
     function E(s) {
         return new Option(s).innerHTML
@@ -49,16 +50,16 @@ export function mmd(s) {
             }[f = b[0]];
             h += (R)
                 ? R[1] + ('\n' + b)
-                .split(R[0])
-                .slice(1)
-                .map(R[3] ? E : I)
-                .join(R[3] || '</li>\n<li>')
+                    .split(R[0])
+                    .slice(1)
+                    .map(R[3] ? E : I)
+                    .join(R[3] || '</li>\n<li>')
                 + R[2]
                 : (f == '#')
                     ? '<h' + (f = b.indexOf(' ')) + '>' + I(b.slice(f + 1)) + '</h' + f + '>'
                     : (f == '<')
                         ? b
-                        : '<p>' + I(b) + '</p>'
+                        : (addP) ? '<p>' + I(b) + '</p>' : I(b)
         });
     return h
 };
