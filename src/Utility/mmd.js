@@ -43,8 +43,8 @@ export function mmd(s, addP = false) {
         .split(/\n\n+/)
         .forEach(function (b, f, R) {
             R = {
-                '*': [/\n\* /, '<ul><li>', '</li></ul>'],
-                1: [/\n[1-9]\d*\.? /, '<ol><li>', '</li></ol>'],
+                // '*': [/\n\* /, '<ul><li>', '</li></ul>'],
+                // 1: [/\n[1-9]\d*\.? /, '<ol><li>', '</li></ol>'],
                 ' ': [/\n    /, '<pre><code>', '</code></pre>', '\n'],
                 '>': [/\n> /, '<blockquote>', '</blockquote>', '\n']
             }[f = b[0]];
@@ -53,7 +53,7 @@ export function mmd(s, addP = false) {
                     .split(R[0])
                     .slice(1)
                     .map(R[3] ? E : I)
-                    .join(R[3] || '</li>\n<li>')
+                    .join(R[3])// || '</li>\n<li>')
                 + R[2]
                 : (f == '#')
                     ? '<h' + (f = b.indexOf(' ')) + '>' + I(b.slice(f + 1)) + '</h' + f + '>'
