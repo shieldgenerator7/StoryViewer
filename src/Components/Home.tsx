@@ -13,6 +13,11 @@ import { version } from "../version";
 import * as React from "react";
 import { jump } from "../Utility/Jump";
 
+
+//2023-07-25: copied from https://stackoverflow.com/a/47736563/2336212
+// must cast as any to set property on window
+const _global = window as any
+
 function Home() {
     //StoryInfo
     let storyInfo: StoryInfo | undefined;
@@ -34,6 +39,7 @@ function Home() {
     let setSearchTerm: (searchTerm: string | undefined) => void;
     const defaultSearchTerm: () => string | undefined = () => undefined;
     [searchTerm, setSearchTerm] = useState(defaultSearchTerm);
+    _global.setSearchTerm = setSearchTerm;
 
     const [searchParams, setSearchParams] = useSearchParams();
     const searchURL = searchParams.get("url");

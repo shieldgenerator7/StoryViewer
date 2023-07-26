@@ -80,7 +80,7 @@ function tryConvertWordToButton(
                 section == name
                     ? `<a
                             class="moreInfo"
-                            onclick="${setSearchTerm}('${character?.name ?? name}');"
+                            onclick="window.setSearchTerm('${character?.name ?? name}');"
                         >${section}</a>`
                     : section
             )
