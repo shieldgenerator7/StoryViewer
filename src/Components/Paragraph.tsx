@@ -1,6 +1,5 @@
 "use strict";
-import { Markup } from "interweave";
-import Word from "../Components/Word";
+import { Interweave, InterweaveProps, Node } from "interweave";
 import { Chapter } from "../System/Chapter";
 import { mmd } from "../Utility/mmd";
 
@@ -17,7 +16,14 @@ function Paragraph({ paragraph, searchWords, id, setSearchTerm }: Props) {
     return (
         <>
             <p id={id}>
-                <Markup content={mmdParagraph}></Markup>
+                {/* <Interweave
+                    // content={mmdParagraph}
+                    content={`<a onclick="alert('hi! it worked');">this is a test ${id}</a>`}
+                    allowAttributes={true}
+                    onAfterParse={inflate}
+                    disableFilters={true}
+                ></Interweave> */}
+                
             </p>
         </>
     );
@@ -83,9 +89,7 @@ function tryConvertWordToButton(
                 section == name
                     ? `<a
                             class="moreInfo"
-                            onClick="${setSearchTerm.name}(${
-                                character?.name ?? name
-                            })"
+                            onclick="alert('${character?.name ?? name}');"
                         >${section}</a>`
                     : section
             )
@@ -93,6 +97,16 @@ function tryConvertWordToButton(
     }
     //nothing special to do here, just return the same input
     return word;
+}
+function inflate(nodes: Node[], props: InterweaveProps): Node[] {
+    // function inflate(element: HTMLElement, children: Node[], config: NodeConfig): React.ReactNode
+    // nodes
+    //     .filter((node) => node?.props?.tagName == "a")
+    //     .forEach((node, i) => {
+    //         node.props.attributes.onclick = node.props.attributes.click;
+    //         console.log("node_" + i, node);
+    //     });
+    return nodes;
 }
 
 export default Paragraph;
