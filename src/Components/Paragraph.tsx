@@ -9,9 +9,9 @@ interface Props {
     setSearchTerm: (searchTerm: string | undefined) => void;
 }
 
-function Paragraph({ paragraph, searchWords, id, setSearchTerm }: Props) {
+function Paragraph({ paragraph, searchWords, id }: Props) {
     let mmdParagraph: string = mmd(paragraph);
-    mmdParagraph = addWordButtons(mmdParagraph, searchWords, setSearchTerm);
+    mmdParagraph = addWordButtons(mmdParagraph, searchWords);
     return (
         <>
             <p id={id} dangerouslySetInnerHTML={{__html:mmdParagraph}}>
@@ -22,19 +22,17 @@ function Paragraph({ paragraph, searchWords, id, setSearchTerm }: Props) {
 
 function addWordButtons(
     paragraph: string,
-    searchWords: any[],
-    setSearchTerm: (searchTerm: string | undefined) => void
+    searchWords: any[]
 ) {
     return paragraph
         .split(" ")
-        .map((word) => tryConvertWordToButton(word, searchWords, setSearchTerm))
+        .map((word) => tryConvertWordToButton(word, searchWords))
         .join(" ");
 }
 
 function tryConvertWordToButton(
     word: string,
-    searchWords: any[],
-    setSearchTerm: (searchTerm: string | undefined) => void
+    searchWords: any[]
 ) {
     word = word.trim();
     const character = searchWords.find(
