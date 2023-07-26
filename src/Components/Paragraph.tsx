@@ -1,6 +1,7 @@
 "use strict";
 import Word from "../Components/Word";
 import { Chapter } from "../System/Chapter";
+import { mmd } from "../Utility/mmd";
 
 interface Props {
     paragraph: string;
@@ -10,7 +11,8 @@ interface Props {
 }
 
 function Paragraph({ paragraph, searchWords, id, setSearchTerm }: Props) {
-    const words = paragraph.split(" ");
+    let mmdParagraph: string = mmd(paragraph);
+    const words = mmdParagraph.split(" ");
     return (
         <>
             <p id={id}>

@@ -1,3 +1,5 @@
+"use strict";
+
 //2023-07-25: copied from https://github.com/p01/mmd.js
 
 // MIT License
@@ -22,7 +24,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-; function mmd(s) {
+export function mmd(s) {
     var h = '';
     function E(s) {
         return new Option(s).innerHTML
