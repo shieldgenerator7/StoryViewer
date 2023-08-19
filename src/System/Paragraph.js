@@ -4,6 +4,8 @@ const regexContainsCapital = /.*[A-Z]/;
 const regexAlphaNumericOnly = /[A-Za-z0-9]+/;
 
 const pronounList = [
+    "i", "me", "my", "mine",
+    "you", "your", "yours",
     "he", "him", "his",
     "she", "her", "hers",
     "they", "them", "their", "theirs",
