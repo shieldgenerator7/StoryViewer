@@ -4,6 +4,7 @@ import { Chapter } from "../System/Chapter";
 import { Paragraph } from "../System/Paragraph";
 import { StoryInfo } from "../System/StoryInfo";
 import * as Select from "../Utility/Select";
+import { Character } from "../System/Character";
 import { defaultCharacter } from "../System/Character";
 
 interface Props {
@@ -18,7 +19,7 @@ function InfoPanel({ searchTerm, story, storyInfo, setSearchTerm }: Props) {
         return <></>;
     }
     let character = storyInfo?.characters?.find(
-        (char: any) =>
+        (char: Character) =>
             char.name == searchTerm || char.nicknames.includes(searchTerm)
     );
     let foundList: any[] = [];
