@@ -195,6 +195,8 @@ export class Paragraph {
                 };
             }
         });
+        //
+        this._updateCharacterList();
     }
 
     _findOwner() {
@@ -236,6 +238,9 @@ export class Paragraph {
      * @param {(char: Character) => boolean} filterFunc The function to filter the character (optional)
      */
     getCharacter(index, filterFunc = (char) => char) {
+        if (index < 0) {
+            index = this.referenceList.length + index;
+        }
         //Search backwards
         for (let i = index; i >= 0; i--) {
             let char = this.referenceList[i]?.character;
@@ -254,20 +259,8 @@ export class Paragraph {
         if (this.character && filterFunc(this.character)) {
             return this.character;
         }
-        //prev paragraph lastCharacter
-        let searchP = this;
-        //this paragraph or the last paragraph doesnt have quotes
-        if (this.prevParagraph?.quoteList.length == 0 || this.quoteList.length == 0) {
-            //use prev paragraph's character
-            searchP = this.prevParagraph ?? searchP;
-        }
-        else {
-            //both have quotes, so go to prev prev paragraph
-            searchP = this.prevParagraph?.prevParagraph ?? searchP;
-        }
-        let char = searchP.character
-            ?? searchP.quoteList.filter(q => q).at(-1)?.character
-            ?? searchP.lastCharacter;
+        //Search prev paragraph
+        let char = this.prevParagraph?.getCharacter(-1, filterFunc);
         if (char && filterFunc(char)) {
             return char;
         }
