@@ -21,10 +21,11 @@ export class Paragraph {
         this.referenceList = [];
         this.characterList = [];//list of characters referenced in this paragraph
         this.quoteList = [];//list of when quotes open and close
-        this.prevLastCharacter = undefined;//last character mentioned in previous paragraph
+        this.lastCharacter = undefined;//last character mentioned in this paragraph
+        this.prevParagraph = undefined;
     }
 
-    analyze(characterList, lastCharacter) {
+    analyze(characterList) {
         let idList = characterList.map(char => char.id);
         let char = characterList.find(char => this.text.startsWith(char.id));
         //Find the character that owns this paragraph, if any
@@ -38,15 +39,12 @@ export class Paragraph {
             }
         }
         //Analyze other character references
-        this.prevLastCharacter = lastCharacter;
-        lastCharacter = this._analyzeCharacterReferences(characterList, this.character ?? lastCharacter);
+        this._analyzeCharacterReferences(characterList);
         //Analyze quotes
-        this._analyzeQuotes(characterList, lastCharacter);
-        //
-        return lastCharacter;
+        this._analyzeQuotes(characterList);
     }
 
-    _analyzeQuotes(characterList, lastCharacter) {
+    _analyzeQuotes(characterList) {
         this.quoteList = [];
         let words = this.text.split(" ");
         //check each word to see if its a quote
@@ -75,11 +73,14 @@ export class Paragraph {
             this.quoteList[index] ??= {};
             let quote = this.quoteList[index];
             quote.close = true;
-            quote.character = lastQuote?.character ?? this.character ?? lastCharacter;
+            quote.character = lastQuote?.character
+                ?? this.character
+                ?? this.lastCharacter
+                ?? this.prevParagraph.lastCharacter;
         }
     }
 
-    _analyzeCharacterReferences(characterList, lastCharacter) {
+    _analyzeCharacterReferences(characterList) {
         this.referenceList = [];
         //here, a word is defined as a contiguous string of non-space letters, numbers, or symbols
         let words = this.text.split(" ");
@@ -90,7 +91,7 @@ export class Paragraph {
             for (let char of characterList) {
                 let name = char.getIdentifierUsed(word);
                 if (name) {
-                    lastCharacter = char;
+                    this.lastCharacter = char;
                     //check if it's a character tag
                     if (word.includes(char.id)) {
                         name = word.split('@')[0];
@@ -115,7 +116,7 @@ export class Paragraph {
                     //record this reference in this list,
                     //even if we dont know who its refering to
                     reference = {
-                        character: lastCharacter ?? undefined,
+                        character: this.lastCharacter ?? this.character ?? undefined,
                         name: pronoun,
                         index: index,
                     };
@@ -146,8 +147,6 @@ export class Paragraph {
                 }
             }
         }
-        //
-        return lastCharacter;
     }
 
     /**
@@ -170,7 +169,7 @@ export class Paragraph {
                 return char;
             }
         }
-        //Use owning character or prevLastCharacter
-        return this.character ?? this.prevLastCharacter;
+        //Use owning character or prev paragraph lastCharacter
+        return this.character ?? this.prevParagraph.lastCharacter;
     }
 }

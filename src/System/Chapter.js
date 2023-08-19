@@ -11,7 +11,11 @@ export class Chapter{
     }
 
     analyze(characterList) {
-        let lastCharacter = undefined;
-        this.paragraphs.forEach(p => lastCharacter = p.analyze(characterList, lastCharacter));
+        let lastParagraph = undefined;
+        this.paragraphs.forEach(p => {
+            p.prevParagraph = lastParagraph;
+            p.analyze(characterList);
+            lastParagraph = p;
+        });
     }
 }
