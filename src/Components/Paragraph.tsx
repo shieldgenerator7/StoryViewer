@@ -9,7 +9,7 @@ interface Props {
     setSearchTerm: (searchTerm: string | undefined) => void;
 }
 
-function Paragraph({ paragraph, searchWords, id }: Props) {
+function ParagraphC({ paragraph, searchWords, id }: Props) {
     let mmdParagraph: string = mmd(paragraph);
     mmdParagraph = addWordButtons(mmdParagraph, searchWords);
     return (
@@ -88,4 +88,4 @@ function tryConvertWordToButton(
     return word;
 }
 
-export default Paragraph;
+export default ParagraphC;

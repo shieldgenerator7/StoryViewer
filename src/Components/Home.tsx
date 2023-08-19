@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 // import "bootstrap/dist/css/bootstrap.css";
 import FrontDesk from "../Components/FrontDesk";
-import ParagraphC  from "../Components/Paragraph";
+import ParagraphC  from "../Components/ParagraphC";
 import InfoPanel from "../Components/InfoPanel";
 import { StoryInfo } from "../System/StoryInfo";
 import { Story } from "../System/Story";
