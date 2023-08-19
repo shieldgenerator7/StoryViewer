@@ -50,8 +50,11 @@ function tryConvertWordToButton(word: string, reference: any) {
     }
     //character reference or capital word
     const name = reference.name;
-    word = word.split("@")[0].trim();
+    word = word.trim();
     word = ` ${word} `;
+    if (word.includes("@")) {
+        word = word.split("@" + reference.character?.id ?? "AAA").join("");
+    }
     let sections = word.split(name);
     sections.splice(1, 0, name);
     sections.forEach((str) => str?.trim());
