@@ -8,6 +8,7 @@ export class Paragraph {
         this.text = text;
         this.character = undefined;
         this.referenceList = [];
+        this.characterList = [];//list of characters referenced in this paragraph
     }
 
     analyze(characterList) {
@@ -63,5 +64,15 @@ export class Paragraph {
                 this.referenceList[index] = reference;
             }
         });
+        //Update characterList
+        this.characterList = [];
+        for (let i in this.referenceList) {
+            let reference = this.referenceList[i];
+            if (reference.character) {                
+                if (!this.characterList.includes(reference.character)) {
+                    this.characterList.push(reference.character);
+                }
+            }
+        }
     }
 }
