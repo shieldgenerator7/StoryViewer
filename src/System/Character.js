@@ -18,6 +18,7 @@ export class Character {
 
     /**
      * Returns true if the given text identifies this character
+     * @param {string} text The text to search through
      */
     isIdentifiedBy(text) {
         return text.includes(this.id) ||
@@ -25,6 +26,31 @@ export class Character {
             this.nicknames.some(nickname =>
                 text.includes(nickname)
             );
+    }
+
+    /**
+     * Returns the first identifier found in the given text:
+     * The order searched for: id, name, nickname
+     * Returns undefined if nothing found
+     * @param {string} text The text to search through
+     */
+    getIdentifierUsed(text) {
+        //id
+        if (text.includes(this.id)) {
+            return this.id;
+        }
+        //name
+        if (text.includes(this.name)) {
+            return this.name;
+        }
+        //nicknames
+        this.nicknames.forEach(nickname => {
+            if (text.includes(nickname)) {
+                return nickname;
+            }
+        })
+        //nothing found
+        return undefined;
     }
 }
 
