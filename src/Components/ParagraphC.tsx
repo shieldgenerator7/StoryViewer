@@ -24,8 +24,11 @@ function ParagraphC({ paragraph, id }: Props) {
 function addWordButtons(paragraph: Paragraph, html: string) {
     return html
         .split(" ")
-        .map((word, index) =>
-            tryConvertWordToButton(word, paragraph.referenceList[index])
+        .map(
+            (word, index) =>
+                (paragraph.quoteList[index] === true ? `<span class="quoteHighlight">` : "") +
+                tryConvertWordToButton(word, paragraph.referenceList[index]) +
+                (paragraph.quoteList[index] === false ? "</span>" : "")
         )
         .join(" ");
 }

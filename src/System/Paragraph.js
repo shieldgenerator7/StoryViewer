@@ -2,6 +2,7 @@
 
 const regexContainsCapital = /.*[A-Z]/;
 const regexAlphaNumericOnly = /[A-Za-z0-9]+/;
+const regexQuote = /[\"]/;
 
 const pronounList = [
     "i", "me", "my", "mine",
@@ -18,6 +19,7 @@ export class Paragraph {
         this.character = undefined;
         this.referenceList = [];
         this.characterList = [];//list of characters referenced in this paragraph
+        this.quoteList = [];//list of when quotes open and close
     }
 
     analyze(characterList, lastCharacter) {
@@ -33,8 +35,27 @@ export class Paragraph {
                 this.text = this.text.substring(1);
             }
         }
+        //Analyze quotes
+        this._analyzeQuotes(characterList, lastCharacter);
         //Analyze other character references
         return this._analyzeCharacterReferences(characterList, this.character ?? lastCharacter);
+    }
+
+    _analyzeQuotes(characterList, lastCharacter) {
+        this.quoteList = [];
+        let words = this.text.split(" ");
+        //check each word to see if its a quote
+        let openQuote = false;
+        words.forEach((word, index) => {
+            if (regexQuote.test(word)) {
+                openQuote = !openQuote;
+                this.quoteList[index] = openQuote;
+            }
+        });
+        //check for unclosed quote
+        if (openQuote) {
+            this.quoteList[words.length - 1] = false;
+        }
     }
 
     _analyzeCharacterReferences(characterList, lastCharacter) {
