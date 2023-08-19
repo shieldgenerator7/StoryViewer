@@ -44,6 +44,7 @@ export function processJSON(
         Fetch.fetchFile(baseURL + urls.characters, (txt: string) => {
             storyInfo.characters = JSON.parse(txt);
             storyInfo.characters.forEach((character: Character) => {
+                Object.setPrototypeOf(character, Character.prototype);
                 if (character.portrait) {
                     character.portraitURL = baseURL + character.portrait;
                 }

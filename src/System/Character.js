@@ -15,6 +15,17 @@ export class Character {
     hasKey(key) {
         return true && this[key];
     }
+
+    /**
+     * Returns true if the given text identifies this character
+     */
+    isIdentifiedBy(text) {
+        return text.includes(this.id) ||
+            text.includes(this.name) ||
+            this.nicknames.some(nickname =>
+                text.includes(nickname)
+            );
+    }
 }
 
 export const defaultCharacter = new Character();

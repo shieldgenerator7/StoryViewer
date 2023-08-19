@@ -28,10 +28,7 @@ function InfoPanel({ searchTerm, story, storyInfo, setSearchTerm }: Props) {
             let found =
                 (character &&
                     (character == paragraph.character ||
-                        paragraph.text.includes(character.name) ||
-                        character.nicknames.some((nickname: string) =>
-                            paragraph.text.includes(nickname)
-                        ))) ||
+                        character.isIdentifiedBy(paragraph.text))) ||
                 paragraph.text.includes(searchTerm);
             if (found) {
                 foundList.push({
