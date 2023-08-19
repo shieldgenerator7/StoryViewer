@@ -2,11 +2,12 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 // import "bootstrap/dist/css/bootstrap.css";
 import FrontDesk from "../Components/FrontDesk";
-import Paragraph from "../Components/Paragraph";
+import ParagraphC  from "../Components/Paragraph";
 import InfoPanel from "../Components/InfoPanel";
 import { StoryInfo } from "../System/StoryInfo";
 import { Story } from "../System/Story";
 import { Chapter } from "../System/Chapter";
+import { Paragraph } from "../System/Paragraph";
 import * as Load from "../Utility/Load";
 import * as Select from "../Utility/Select";
 import { version } from "../version";
@@ -146,19 +147,19 @@ function Home() {
             )}
             <div id="divParagraphs">
                 {story?.chapters.map((chapter: Chapter, chIndex: number) =>
-                    chapter.lines.map((line: string, index: number) => (
+                    chapter.paragraphs.map((paragraph: Paragraph, index: number) => (
                         <>
                             {index == 0 && (
                                 <h1
                                     id={"ch" + chIndex}
                                     key={chIndex + "-" + index}
                                 >
-                                    {line}
+                                    {paragraph.text}
                                 </h1>
                             )}
                             {index > 0 && (
                                 <>
-                                    {line?.trim().length > 0 && (
+                                    {paragraph?.text.trim().length > 0 && (
                                         <span
                                             className="place"
                                             key={"spn" + chIndex + "-" + index}
@@ -176,9 +177,9 @@ function Home() {
                                             {chIndex}-{index}
                                         </span>
                                     )}
-                                    <Paragraph
+                                    <ParagraphC
                                         key={"p" + chIndex + "-" + index}
-                                        paragraph={line}
+                                        paragraph={paragraph.text}
                                         searchWords={searchWords}
                                         setSearchTerm={setSearchTerm}
                                         id={"p" + chIndex + "-" + index}

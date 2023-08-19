@@ -1,6 +1,7 @@
 "use strict";
 import { Story } from "../System/Story";
 import { Chapter } from "../System/Chapter";
+import { Paragraph } from "../System/Paragraph";
 import { StoryInfo } from "../System/StoryInfo";
 import * as Select from "../Utility/Select";
 import { defaultCharacter } from "../System/Character";
@@ -23,19 +24,19 @@ function InfoPanel({ searchTerm, story, storyInfo, setSearchTerm }: Props) {
     let foundList: any[] = [];
     story ??= storyInfo?.story;
     story?.chapters.forEach((chapter: Chapter, chIndex: number) => {
-        chapter.lines.forEach((paragraph: string, pIndex: number) => {
+        chapter.paragraphs.forEach((paragraph: Paragraph, pIndex: number) => {
             let found =
                 (character &&
-                    (paragraph.includes(character.name) ||
+                    (paragraph.text.includes(character.name) ||
                         character.nicknames.some((nickname: string) =>
-                            paragraph.includes(nickname)
+                            paragraph.text.includes(nickname)
                         ))) ||
-                paragraph.includes(searchTerm);
+                paragraph.text.includes(searchTerm);
             if (found) {
                 foundList.push({
                     chIndex: chIndex,
                     pIndex: pIndex,
-                    paragraph: paragraph,
+                    paragraph: paragraph.lines,
                 });
             }
         });
