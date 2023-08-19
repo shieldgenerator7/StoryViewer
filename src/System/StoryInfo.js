@@ -8,5 +8,13 @@ export class StoryInfo {
         this.author = undefined;
         this.year = undefined;
         this.lastupdated = undefined;
+
+        if (this.story && this.characters) {
+            this.analyze();
+        }
     }
+
+    analyze() {
+        this.story?.analyze(this.characters ?? []);
+    }//
 }

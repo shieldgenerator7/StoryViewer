@@ -37,6 +37,7 @@ export function processJSON(
     let baseURL = url.substring(0, url.lastIndexOf("/")) + "/";
     Fetch.fetchFile(baseURL + urls.story, (txt: string) => {
         storyInfo.story = new Story(txt);
+        storyInfo.analyze();
         setStoryInfo?.(storyInfo);
     });
     if (urls.characters) {
@@ -47,6 +48,7 @@ export function processJSON(
                     character.portraitURL = baseURL + character.portrait;
                 }
             });
+            storyInfo.analyze();
             setStoryInfo?.(storyInfo);
         });
     }

@@ -9,4 +9,8 @@ export class Chapter{
         this.title1 = this.title.split(" ")[0].trim();
         this.paragraphs = this.lines.map(line => new Paragraph(line));
     }
+
+    analyze(characterList) {
+        this.paragraphs.forEach(p => p.analyze(characterList));
+    }
 }

@@ -12,4 +12,8 @@ export class Story {
             .map((text) => new Chapter(text));
         this.title ??= this.chapters[0].title;
     }
+
+    analyze(characterList) {
+        this.chapters.forEach(chapter => chapter.analyze(characterList));
+    }
 }
