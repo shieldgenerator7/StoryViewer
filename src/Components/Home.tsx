@@ -180,8 +180,8 @@ function Home() {
                                     <ParagraphC
                                         key={"p" + chIndex + "-" + index}
                                         paragraph={paragraph}
-                                        setSearchTerm={setSearchTerm}
                                         id={"p" + chIndex + "-" + index}
+                                        activeCharName={searchTerm}
                                     />
                                     <p></p>
                                 </>

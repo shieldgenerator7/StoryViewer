@@ -5,12 +5,12 @@ import { mmd } from "../Utility/mmd";
 interface Props {
     paragraph: Paragraph;
     id: string;
-    setSearchTerm: (searchTerm: string | undefined) => void;
+    activeCharName: string | undefined;
 }
 
-function ParagraphC({ paragraph, id }: Props) {
+function ParagraphC({ paragraph, id, activeCharName }: Props) {
     let mmdParagraph: string = mmd(paragraph.text);
-    mmdParagraph = addWordButtons(paragraph, mmdParagraph);
+    mmdParagraph = addWordButtons(paragraph, mmdParagraph, activeCharName);
     return (
         <>
             <p
@@ -21,15 +21,25 @@ function ParagraphC({ paragraph, id }: Props) {
     );
 }
 
-function addWordButtons(paragraph: Paragraph, html: string) {
+function addWordButtons(
+    paragraph: Paragraph,
+    html: string,
+    activeCharName: string | undefined
+) {
     return html
         .split(" ")
-        .map(
-            (word, index) =>
-                (paragraph.quoteList[index]?.open ? `<span class="quoteHighlight">` : "") +
-                tryConvertWordToButton(word, paragraph.referenceList[index]) +
-                (paragraph.quoteList[index]?.close ? "</span>" : "")
-        )
+        .map((word, index) => {
+            let quote = paragraph.quoteList[index];
+            let canQuote = activeCharName && quote?.character?.name == activeCharName;
+            let ref = paragraph.referenceList[index];
+            return (
+                (canQuote && quote?.open
+                    ? `<span class="quoteHighlight">`
+                    : "") +
+                tryConvertWordToButton(word, ref) +
+                (canQuote && quote?.close ? "</span>" : "")
+            );
+        })
         .join(" ");
 }
 

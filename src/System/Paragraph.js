@@ -51,11 +51,12 @@ export class Paragraph {
         let words = this.text.split(" ");
         //check each word to see if its a quote
         let openQuote = false;
+        let lastQuote = undefined;
         words.forEach((word, index) => {
             if (regexQuote.test(word)) {
                 openQuote = !openQuote;
                 let quote = {
-                    character: this.character ?? this.getCharacter(index),
+                    character: lastQuote?.character ?? this.character ?? this.getCharacter(index),
                     open: openQuote,
                     close: !openQuote,
                 };
@@ -64,6 +65,7 @@ export class Paragraph {
                     openQuote = !openQuote;
                     quote.close = true;
                 }
+                lastQuote = (openQuote) ? quote : undefined;
                 this.quoteList[index] = quote;
             }
         });
@@ -73,7 +75,7 @@ export class Paragraph {
             this.quoteList[index] ??= {};
             let quote = this.quoteList[index];
             quote.close = true;
-            quote.lastCharacter = this.character ?? lastCharacter;
+            quote.character = lastQuote?.character ?? this.character ?? lastCharacter;
         }
     }
 
