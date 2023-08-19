@@ -27,7 +27,8 @@ function InfoPanel({ searchTerm, story, storyInfo, setSearchTerm }: Props) {
         chapter.paragraphs.forEach((paragraph: Paragraph, pIndex: number) => {
             let found =
                 (character &&
-                    (paragraph.text.includes(character.name) ||
+                    (character == paragraph.character ||
+                        paragraph.text.includes(character.name) ||
                         character.nicknames.some((nickname: string) =>
                             paragraph.text.includes(nickname)
                         ))) ||
