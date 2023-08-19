@@ -40,6 +40,8 @@ export class Paragraph {
         }
         //Analyze other character references
         this._analyzeCharacterReferences(characterList);
+        //try to get an owner
+        this._findOwner();
         //Analyze quotes
         this._analyzeQuotes(characterList);
     }
@@ -147,6 +149,37 @@ export class Paragraph {
                 }
             }
         }
+    }
+
+    _findOwner() {
+        if (this.character) {
+            return;
+        }
+        //check refs: one char
+        if (this.characterList.length == 1) {
+            this.character = this.characterList[0];
+            return;
+        }
+        //check refs: multiple chars
+        if (this.characterList.length > 1) {
+            let countDict = {};
+            this.characterList.forEach(char => countDict[char.name] = 0);
+            this.referenceList
+                .filter(ref => ref?.character)
+                .forEach(ref => countDict[ref.character.name]++);
+            let char = this.characterList.reduce((c1, c2) =>
+                (countDict[c1.name] >= countDict[c2.name]) ? c1 : c2
+            );
+            this.character = char;
+            return;
+        }
+        //check prev paragraph
+        if (this.quoteList.length == 0 || this.prevParagraph?.quoteList.length == 0) {
+            this.character = this.prevParagraph?.character;
+            return;
+        }
+        //check prev prev paragraph
+        this.character = this.prevParagraph?.prevParagraph?.character;
     }
 
     /**
