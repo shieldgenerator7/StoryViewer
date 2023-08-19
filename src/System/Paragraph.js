@@ -32,7 +32,7 @@ export class Paragraph {
             }
         }
         //Analyze other character references
-        return this._analyzeCharacterReferences(characterList, lastCharacter);
+        return this._analyzeCharacterReferences(characterList, this.character ?? lastCharacter);
     }
 
     _analyzeCharacterReferences(characterList, lastCharacter) {
