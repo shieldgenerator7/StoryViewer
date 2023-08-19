@@ -80,7 +80,7 @@ function Home() {
         }
     }
 
-    let searchWords = characters ?? [];
+    //let searchWords = characters ?? [];
 
     document.title = story
         ? (story as Story).title + " (Story Viewer)"
