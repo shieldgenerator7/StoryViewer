@@ -169,17 +169,23 @@ export class Paragraph {
                 return char;
             }
         }
-        //Use owning character or prev paragraph lastCharacter
-        return this.character
-            ?? (
-                //if this paragraph or the last paragraph doesnt have quotes
-                (this.prevParagraph?.quoteList.length == 0 || this.quoteList.length == 0)
-                    //use prev paragraph's character
-                    ? this.prevParagraph.lastCharacter ?? this.prevParagraph.character
-                    //both have quotes, so go to prev prev paragraph
-                    : this.prevParagraph?.prevParagraph?.character
-                    ?? this.prevParagraph?.prevParagraph?.quoteList.filter(q => q).at(-1)?.character
-                    ?? this.prevParagraph?.prevParagraph?.lastCharacter
-            );
+        //Use owning character 
+        if (this.character) {
+            return this.character;
+        }
+        //prev paragraph lastCharacter
+        let searchP = this;
+        //this paragraph or the last paragraph doesnt have quotes
+        if (this.prevParagraph?.quoteList.length == 0 || this.quoteList.length == 0) {
+            //use prev paragraph's character
+            searchP = this.prevParagraph ?? searchP;
+        }
+        else {
+            //both have quotes, so go to prev prev paragraph
+            searchP = this.prevParagraph?.prevParagraph ?? searchP;
+        }
+        return searchP.character
+            ?? searchP.quoteList.filter(q => q).at(-1)?.character
+            ?? searchP.lastCharacter;
     }
 }
