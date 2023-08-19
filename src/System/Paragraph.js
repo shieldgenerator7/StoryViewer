@@ -158,14 +158,14 @@ export class Paragraph {
     getCharacter(index) {
         //Search backwards
         for (let i = index; i >= 0; i--) {
-            let char = this.referenceList[index]?.character;
+            let char = this.referenceList[i]?.character;
             if (char) {
                 return char;
             }
         }
         //Search forwards
         for (let i = index; i < this.referenceList.length; i++) {
-            let char = this.referenceList[index]?.character;
+            let char = this.referenceList[i]?.character;
             if (char) {
                 return char;
             }
