@@ -37,7 +37,7 @@ function InfoPanel({ searchTerm, story, storyInfo, setSearchTerm }: Props) {
                 foundList.push({
                     chIndex: chIndex,
                     pIndex: pIndex,
-                    paragraph: paragraph.lines,
+                    paragraph: paragraph.text,
                 });
             }
         });
