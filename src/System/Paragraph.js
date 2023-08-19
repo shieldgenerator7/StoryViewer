@@ -26,9 +26,19 @@ export class Paragraph {
     }
 
     analyze(characterList) {
-        let idList = characterList.map(char => char.id);
-        let char = characterList.find(char => this.text.startsWith(char.id));
         //Find the character that owns this paragraph, if any
+        this._parseCharId(characterList);
+        //Analyze other character references
+        this._analyzeCharacterReferences(characterList);
+        this._analyzePronounReferences();
+        //try to get an owner if none yet
+        this._findOwner();
+        //Analyze quotes
+        this._analyzeQuotes(characterList);
+    }
+
+    _parseCharId(characterList) {
+        let char = characterList.find(char => this.text.startsWith(char.id));
         if (char) {
             this.character = char;
             //remove character's id from the beginning of the paragraph
@@ -38,12 +48,6 @@ export class Paragraph {
                 this.text = this.text.substring(1);
             }
         }
-        //Analyze other character references
-        this._analyzeCharacterReferences(characterList);
-        //try to get an owner
-        this._findOwner();
-        //Analyze quotes
-        this._analyzeQuotes(characterList);
     }
 
     _analyzeQuotes(characterList) {
@@ -108,22 +112,6 @@ export class Paragraph {
                     break;
                 }
             }
-            //check to see if word is a pronoun
-            if (!reference) {
-                let pronoun = pronounList.find(pronoun =>
-                    word.match(regexAlphaNumericOnly)?.[0].toLowerCase() == pronoun
-                );
-                if (pronoun) {
-                    pronoun = word.match(regexAlphaNumericOnly)[0];
-                    //record this reference in this list,
-                    //even if we dont know who its refering to
-                    reference = {
-                        character: this.lastCharacter ?? this.character ?? undefined,
-                        name: pronoun,
-                        index: index,
-                    };
-                }
-            }
             //check to see if word is capitalized
             if (!reference) {
                 if (regexContainsCapital.test(word)) {
@@ -140,7 +128,14 @@ export class Paragraph {
             }
         });
         //Update characterList
+        this._updateCharacterList();
+    }
+
+    _updateCharacterList() {
         this.characterList = [];
+        if (this.character) {
+            this.characterList.push(this.character);
+        }
         for (let i in this.referenceList) {
             let reference = this.referenceList[i];
             if (reference.character) {
@@ -149,6 +144,33 @@ export class Paragraph {
                 }
             }
         }
+    }
+
+    _analyzePronounReferences() {
+        let words = this.text.split(" ");
+        //check each word to see if its a pronoun reference to a character
+        words.forEach((word, index) => {
+            let reference = this.referenceList[index];
+            //if this reference doesnt have a character yet,
+            if (!reference?.character) {
+                //check to see if word is a pronoun
+                let pronoun = pronounList.find(pronoun =>
+                    word.match(regexAlphaNumericOnly)?.[0].toLowerCase() == pronoun
+                );
+                if (pronoun) {
+                    pronoun = word.match(regexAlphaNumericOnly)[0];
+                    //record this reference in this list,
+                    //even if we dont know who its refering to
+                    reference = {
+                        character: this.getCharacter(index) ?? this.character ?? undefined,
+                        name: pronoun,
+                        index: index,
+                    };
+                    //register reference
+                    this.referenceList[index] = reference;
+                };
+            }
+        });
     }
 
     _findOwner() {
