@@ -26,9 +26,9 @@ function addWordButtons(paragraph: Paragraph, html: string) {
         .split(" ")
         .map(
             (word, index) =>
-                (paragraph.quoteList[index] === true ? `<span class="quoteHighlight">` : "") +
+                (paragraph.quoteList[index]?.open ? `<span class="quoteHighlight">` : "") +
                 tryConvertWordToButton(word, paragraph.referenceList[index]) +
-                (paragraph.quoteList[index] === false ? "</span>" : "")
+                (paragraph.quoteList[index]?.close ? "</span>" : "")
         )
         .join(" ");
 }

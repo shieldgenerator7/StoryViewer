@@ -20,6 +20,7 @@ export class Paragraph {
         this.referenceList = [];
         this.characterList = [];//list of characters referenced in this paragraph
         this.quoteList = [];//list of when quotes open and close
+        this.prevLastCharacter = undefined;//last character mentioned in previous paragraph
     }
 
     analyze(characterList, lastCharacter) {
@@ -35,10 +36,13 @@ export class Paragraph {
                 this.text = this.text.substring(1);
             }
         }
+        //Analyze other character references
+        this.prevLastCharacter = lastCharacter;
+        lastCharacter = this._analyzeCharacterReferences(characterList, this.character ?? lastCharacter);
         //Analyze quotes
         this._analyzeQuotes(characterList, lastCharacter);
-        //Analyze other character references
-        return this._analyzeCharacterReferences(characterList, this.character ?? lastCharacter);
+        //
+        return lastCharacter;
     }
 
     _analyzeQuotes(characterList, lastCharacter) {
@@ -49,12 +53,21 @@ export class Paragraph {
         words.forEach((word, index) => {
             if (regexQuote.test(word)) {
                 openQuote = !openQuote;
-                this.quoteList[index] = openQuote;
+                let quote = {
+                    character: this.character ?? this.getCharacter(index),
+                    open: openQuote,
+                    close: !openQuote,
+                };
+                this.quoteList[index] = quote;
             }
         });
         //check for unclosed quote
         if (openQuote) {
-            this.quoteList[words.length - 1] = false;
+            let index = words.length - 1;
+            this.quoteList[index] ??= {};
+            let quote = this.quoteList[index];
+            quote.close = true;
+            quote.lastCharacter = this.character ?? lastCharacter;
         }
     }
 
@@ -127,5 +140,29 @@ export class Paragraph {
         }
         //
         return lastCharacter;
+    }
+
+    /**
+     * Returns the most probable character relevant to the given index
+     * @precondition Assumes the character reference list has been constructed
+     * @param {Number} index 
+     */
+    getCharacter(index) {
+        //Search backwards
+        for (let i = index; i >= 0; i--) {
+            let char = this.referenceList[index]?.character;
+            if (char) {
+                return char;
+            }
+        }
+        //Search forwards
+        for (let i = index; i < this.referenceList.length; i++) {
+            let char = this.referenceList[index]?.character;
+            if (char) {
+                return char;
+            }
+        }
+        //Use owning character or prevLastCharacter
+        return this.character ?? this.prevLastCharacter;
     }
 }
