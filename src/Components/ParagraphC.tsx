@@ -1,16 +1,17 @@
 "use strict";
 import { Chapter } from "../System/Chapter";
+import { Paragraph } from "../System/Paragraph";
 import { mmd } from "../Utility/mmd";
 
 interface Props {
-    paragraph: string;
+    paragraph: Paragraph;
     searchWords: Chapter[];
     id: string;
     setSearchTerm: (searchTerm: string | undefined) => void;
 }
 
 function ParagraphC({ paragraph, searchWords, id }: Props) {
-    let mmdParagraph: string = mmd(paragraph);
+    let mmdParagraph: string = mmd(paragraph.text);
     mmdParagraph = addWordButtons(mmdParagraph, searchWords);
     return (
         <>
