@@ -44,11 +44,11 @@ export class Character {
             return this.name;
         }
         //nicknames
-        this.nicknames.forEach(nickname => {
+        for (let nickname of this.nicknames) {
             if (text.includes(nickname)) {
                 return nickname;
             }
-        })
+        };
         //nothing found
         return undefined;
     }
