@@ -51,6 +51,7 @@ function tryConvertWordToButton(word: string, reference: any) {
                         onclick="window.setSearchTerm('${
                             reference.character?.name ?? name
                         }');"
+                        title="${reference.character?.name ?? ""}"
                     >${section}</a>`
                 : section
         )
