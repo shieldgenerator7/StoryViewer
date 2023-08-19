@@ -201,7 +201,8 @@ export class Paragraph {
             return;
         }
         //check prev prev paragraph
-        this.character = this.prevParagraph?.prevParagraph?.character;
+        this.character = this.prevParagraph?.prevParagraph?.character
+            ?? this.prevParagraph?.character;
     }
 
     /**
