@@ -104,6 +104,14 @@ p {
     margin-right: 5%;
 }
 
+.quoteHighlight {
+    color: inherit;
+    font-weight: inherit;
+    border-radius: 0.3em;
+    color: black;
+    background-color: #AAE8FF;
+}
+
 .place {
     position: absolute;
     left: 3%;
