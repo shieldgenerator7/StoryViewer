@@ -3,6 +3,7 @@
 const regexContainsCapital = /.*[A-Z]/;
 const regexAlphaNumericOnly = /[A-Za-z0-9]+/;
 const regexQuote = /[\"]/;
+const regexQuoteDouble = /\".*\"/;
 
 const pronounList = [
     "i", "me", "my", "mine",
@@ -58,6 +59,11 @@ export class Paragraph {
                     open: openQuote,
                     close: !openQuote,
                 };
+                if (regexQuoteDouble.test(word)) {
+                    //assume it's a one-word quote
+                    openQuote = !openQuote;
+                    quote.close = true;
+                }
                 this.quoteList[index] = quote;
             }
         });
