@@ -18,7 +18,7 @@ export class Paragraph {
         this.characterList = [];//list of characters referenced in this paragraph
     }
 
-    analyze(characterList) {
+    analyze(characterList, lastCharacter) {
         let idList = characterList.map(char => char.id);
         let char = characterList.find(char => this.text.startsWith(char.id));
         //Find the character that owns this paragraph, if any
@@ -32,15 +32,14 @@ export class Paragraph {
             }
         }
         //Analyze other character references
-        this._analyzeCharacterReferences(characterList);
+        return this._analyzeCharacterReferences(characterList, lastCharacter);
     }
 
-    _analyzeCharacterReferences(characterList) {
+    _analyzeCharacterReferences(characterList, lastCharacter) {
         this.referenceList = [];
         //here, a word is defined as a contiguous string of non-space letters, numbers, or symbols
         let words = this.text.split(" ");
         //check each word to see if its a reference to a character
-        let lastCharacter = undefined;
         words.forEach((word, index) => {
             let reference = undefined;
             //check each character to see if its referenced to by this word
@@ -99,5 +98,7 @@ export class Paragraph {
                 }
             }
         }
+        //
+        return lastCharacter;
     }
 }

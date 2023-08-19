@@ -11,6 +11,7 @@ export class Chapter{
     }
 
     analyze(characterList) {
-        this.paragraphs.forEach(p => p.analyze(characterList));
+        let lastCharacter = undefined;
+        this.paragraphs.forEach(p => lastCharacter = p.analyze(characterList, lastCharacter));
     }
 }
