@@ -13,6 +13,24 @@ const pronounList = [
     "they", "them", "their", "theirs",
     "it", "its",
 ];
+const pronounDict = {
+    Male: [
+        "i", "me", "my", "mine",
+        "you", "your", "yours",
+        "he", "him", "his",
+    ],
+    Female: [
+        "i", "me", "my", "mine",
+        "you", "your", "yours",
+        "she", "her", "hers",
+    ],
+    Neutral: [
+        "i", "me", "my", "mine",
+        "you", "your", "yours",
+        "they", "them", "their", "theirs",
+        "it", "its",
+    ],
+};
 
 export class Paragraph {
     constructor(text) {
@@ -159,10 +177,16 @@ export class Paragraph {
                 );
                 if (pronoun) {
                     pronoun = word.match(regexAlphaNumericOnly)[0];
+                    let character = this.getCharacter(
+                        index,
+                        (char) => this.doesPronounMatchCharacter(pronoun, char)
+                    )
+                        ?? this.character
+                        ?? undefined;
                     //record this reference in this list,
                     //even if we dont know who its refering to
                     reference = {
-                        character: this.getCharacter(index) ?? this.character ?? undefined,
+                        character: character,
                         name: pronoun,
                         index: index,
                     };
@@ -208,25 +232,26 @@ export class Paragraph {
     /**
      * Returns the most probable character relevant to the given index
      * @precondition Assumes the character reference list has been constructed
-     * @param {Number} index 
+     * @param {Number} index The index from which to start searching
+     * @param {(char: Character) => boolean} filterFunc The function to filter the character (optional)
      */
-    getCharacter(index) {
+    getCharacter(index, filterFunc = (char) => char) {
         //Search backwards
         for (let i = index; i >= 0; i--) {
             let char = this.referenceList[i]?.character;
-            if (char) {
+            if (char && filterFunc(char)) {
                 return char;
             }
         }
         //Search forwards
         for (let i = index; i < this.referenceList.length; i++) {
             let char = this.referenceList[i]?.character;
-            if (char) {
+            if (char && filterFunc(char)) {
                 return char;
             }
         }
         //Use owning character 
-        if (this.character) {
+        if (this.character && filterFunc(this.character)) {
             return this.character;
         }
         //prev paragraph lastCharacter
@@ -240,8 +265,22 @@ export class Paragraph {
             //both have quotes, so go to prev prev paragraph
             searchP = this.prevParagraph?.prevParagraph ?? searchP;
         }
-        return searchP.character
+        let char = searchP.character
             ?? searchP.quoteList.filter(q => q).at(-1)?.character
             ?? searchP.lastCharacter;
+        if (char && filterFunc(char)) {
+            return char;
+        }
+        return undefined;
+    }
+
+    doesPronounMatchCharacter(pronoun, character) {
+        //default: match
+        if (!character.gender) {
+            return true;
+        }
+        //
+        pronoun = pronoun.toLowerCase();
+        return pronounDict[character.gender]?.includes(pronoun) ?? true;
     }
 }

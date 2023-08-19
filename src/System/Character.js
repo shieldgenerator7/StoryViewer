@@ -5,6 +5,7 @@ export class Character {
         this.name = "unnamed";
         this.nicknames = [];
         this.id = "AAA";//the short id used to identify characters when it's not obvious, format: @AAA
+        this.gender = undefined;//"Male","Female","Neutral"
         this.portrait = -1; //image
         this.portraitURL = " ";
         this.portraitCredit = " ";
