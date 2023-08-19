@@ -1,18 +1,16 @@
 "use strict";
-import { Chapter } from "../System/Chapter";
 import { Paragraph } from "../System/Paragraph";
 import { mmd } from "../Utility/mmd";
 
 interface Props {
     paragraph: Paragraph;
-    searchWords: Chapter[];
     id: string;
     setSearchTerm: (searchTerm: string | undefined) => void;
 }
 
-function ParagraphC({ paragraph, searchWords, id }: Props) {
+function ParagraphC({ paragraph, id }: Props) {
     let mmdParagraph: string = mmd(paragraph.text);
-    mmdParagraph = addWordButtons(mmdParagraph, searchWords);
+    mmdParagraph = addWordButtons(paragraph, mmdParagraph);
     return (
         <>
             <p
@@ -23,68 +21,40 @@ function ParagraphC({ paragraph, searchWords, id }: Props) {
     );
 }
 
-function addWordButtons(paragraph: string, searchWords: any[]) {
-    return paragraph
+function addWordButtons(paragraph: Paragraph, html: string) {
+    return html
         .split(" ")
-        .map((word) => tryConvertWordToButton(word, searchWords))
+        .map((word, index) =>
+            tryConvertWordToButton(word, paragraph.referenceList[index])
+        )
         .join(" ");
 }
 
-function tryConvertWordToButton(word: string, searchWords: any[]) {
+function tryConvertWordToButton(word: string, reference: any) {
+    //no reference, so just return the word
+    if (!reference) {
+        return word;
+    }
+    //character reference or capital word
+    const name = reference.name;
     word = word.trim();
-    const character = searchWords.find(
-        (search) =>
-            word.includes(search.name) ||
-            search.nicknames.some((nickname: string) => word.includes(nickname))
-    );
-    let capital = undefined;
-    let startIndex = -1;
-    let endIndex = word.length;
-    for (let i = 0; i < word.length; i++) {
-        let char = word.charAt(i);
-        if (
-            startIndex < 0 &&
-            char == char.toUpperCase() &&
-            char.toUpperCase() != char.toLowerCase()
-        ) {
-            startIndex = i;
-            capital = char;
-        } else {
-            //2023-05-21: copied from: https://stackoverflow.com/a/32567789/2336212
-            let isLetter = char.toLowerCase() != char.toUpperCase();
-            if (!isLetter) {
-                endIndex = i;
-                break;
-            }
-        }
-    }
-    if (character || capital) {
-        const name = character
-            ? word.includes(character.name)
-                ? character.name
-                : character.nicknames.find((nickname: string) =>
-                      word.includes(nickname)
-                  )
-            : word.substring(startIndex, endIndex);
-        word = ` ${word} `;
-        let sections = word.split(name);
-        sections.splice(1, 0, name);
-        sections = sections.filter((str) => str?.trim());
-        return sections
-            .map((section) =>
-                section == name
-                    ? `<a
-                            class="moreInfo"
-                            onclick="window.setSearchTerm('${
-                                character?.name ?? name
-                            }');"
-                        >${section}</a>`
-                    : section
-            )
-            .join("");
-    }
-    //nothing special to do here, just return the same input
-    return word;
+    word = ` ${word} `;
+    let sections = word.split(name);
+    sections.splice(1, 0, name);
+    sections.forEach((str) => str?.trim());
+    return sections
+        .filter((str) => str)
+        .map((section) =>
+            section == name
+                ? `<a
+                        class="moreInfo"
+                        onclick="window.setSearchTerm('${
+                            reference.character?.name ?? name
+                        }');"
+                    >${section}</a>`
+                : section
+        )
+        .join("");
 }
 
 export default ParagraphC;
