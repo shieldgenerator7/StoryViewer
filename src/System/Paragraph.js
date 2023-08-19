@@ -170,6 +170,16 @@ export class Paragraph {
             }
         }
         //Use owning character or prev paragraph lastCharacter
-        return this.character ?? this.prevParagraph.lastCharacter;
+        return this.character
+            ?? (
+                //if this paragraph or the last paragraph doesnt have quotes
+                (this.prevParagraph?.quoteList.length == 0 || this.quoteList.length == 0)
+                    //use prev paragraph's character
+                    ? this.prevParagraph.lastCharacter ?? this.prevParagraph.character
+                    //both have quotes, so go to prev prev paragraph
+                    : this.prevParagraph?.prevParagraph?.character
+                    ?? this.prevParagraph?.prevParagraph?.quoteList.filter(q => q).at(-1)?.character
+                    ?? this.prevParagraph?.prevParagraph?.lastCharacter
+            );
     }
 }
