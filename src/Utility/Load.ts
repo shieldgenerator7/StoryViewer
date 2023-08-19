@@ -58,4 +58,10 @@ export function processJSON(
     storyInfo.year = urls.year;
     storyInfo.lastupdated = urls.lastupdated;
     setStoryInfo?.(storyInfo);
+    //
+    //2023-08-19: TEST
+    //
+    const _global = window as any;
+    _global.storyInfo = storyInfo;
+    //
 }

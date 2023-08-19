@@ -12,6 +12,16 @@ export class StoryInfo {
         if (this.story && this.characters) {
             this.analyze();
         }
+
+        //
+        //2023-08-19: TEST
+        //
+        let _global = window;
+        let storyInfo = this;
+        _global.getParagraph = (ci, pi) => {
+            return storyInfo.story.chapters[ci].paragraphs[pi];
+        };
+        //
     }
 
     analyze() {
