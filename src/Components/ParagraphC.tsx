@@ -15,26 +15,22 @@ function ParagraphC({ paragraph, searchWords, id }: Props) {
     mmdParagraph = addWordButtons(mmdParagraph, searchWords);
     return (
         <>
-            <p id={id} dangerouslySetInnerHTML={{__html:mmdParagraph}}>
-            </p>
+            <p
+                id={id}
+                dangerouslySetInnerHTML={{ __html: mmdParagraph }}
+            ></p>
         </>
     );
 }
 
-function addWordButtons(
-    paragraph: string,
-    searchWords: any[]
-) {
+function addWordButtons(paragraph: string, searchWords: any[]) {
     return paragraph
         .split(" ")
         .map((word) => tryConvertWordToButton(word, searchWords))
         .join(" ");
 }
 
-function tryConvertWordToButton(
-    word: string,
-    searchWords: any[]
-) {
+function tryConvertWordToButton(word: string, searchWords: any[]) {
     word = word.trim();
     const character = searchWords.find(
         (search) =>
@@ -79,7 +75,9 @@ function tryConvertWordToButton(
                 section == name
                     ? `<a
                             class="moreInfo"
-                            onclick="window.setSearchTerm('${character?.name ?? name}');"
+                            onclick="window.setSearchTerm('${
+                                character?.name ?? name
+                            }');"
                         >${section}</a>`
                     : section
             )
