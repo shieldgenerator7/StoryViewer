@@ -49,6 +49,10 @@ export class Paragraph {
                 let name = char.getIdentifierUsed(word);
                 if (name) {
                     lastCharacter = char;
+                    //check if it's a character tag
+                    if (word.includes(char.id)) {
+                        name = word.split('@')[0];
+                    }
                     //record this reference in this list
                     reference = {
                         character: char,
