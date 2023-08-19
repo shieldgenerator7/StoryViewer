@@ -13,10 +13,10 @@ export class Paragraph {
         if (char) {
             this.character = char;
             //remove character's id from the beginning of the paragraph
-            this.text = this.text.substring(0, char.id.length);
+            this.text = this.text.substring(char.id.length);
             //remove colon from beginning of paragraph, if it's there
             if (this.text.startsWith(":")) {
-                this.text = this.text.substring(0, 1);
+                this.text = this.text.substring(1);
             }
         }
     }
