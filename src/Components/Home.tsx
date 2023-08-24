@@ -151,6 +151,7 @@ function Home() {
                 {story?.chapters.map((chapter: Chapter) =>
                     chapter.paragraphs.map((paragraph: Paragraph, index: number) => (
                         <>
+                            {/* Paragraph Header */}
                             {index == 0 && (
                                 <h1
                                     id={"ch" + chapter.number}
@@ -161,6 +162,7 @@ function Home() {
                             )}
                             {index > 0 && (
                                 <>
+                                    {/* Paragraph Links */}
                                     {paragraph?.text.trim().length > 0 && (
                                         <span
                                             className="place"
@@ -179,6 +181,7 @@ function Home() {
                                             {chapter.number}-{index}
                                         </span>
                                     )}
+                                    {/* Paragraph Content */}
                                     <ParagraphC
                                         key={"p" + chapter.number + "-" + index}
                                         paragraph={paragraph}
