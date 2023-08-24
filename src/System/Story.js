@@ -6,8 +6,10 @@ export class Story {
         this.chapters = [];
         this.text = text;
         this.title = title;
-        this.chapters = text
-            .split("#")
+        //find chapter split by the "#" symbol,
+        //adding a newline to the start to detect headers on line 1
+        this.chapters = ("\n" + text)
+            .split(/\n *# +/)
             .filter((str) => str?.trim())
             .map((text) => new Chapter(text));
         this.title ??= this.chapters[0].title;
