@@ -36,11 +36,12 @@ function FrontDesk({ label, storage, setSearchParams }: Props) {
             >
                 GO
             </button>
+            {/* Previously Accessed Story Buttons */}
             <div>
                 {storage.entryCount > 0 &&
                     storage.getURLs().map((urlObj: any) => (
                         <p>
-                            <a
+                            <button
                                 onClick={() => {
                                     location.search =
                                         "?" +
@@ -49,8 +50,13 @@ function FrontDesk({ label, storage, setSearchParams }: Props) {
                                         urlObj.url;
                                 }}
                             >
-                                {urlObj.title ?? urlObj.url}
-                            </a>
+                                <p> {urlObj.title ?? urlObj.url}</p>
+                                <p>
+                                    {urlObj.chapterCount
+                                        ? urlObj.chapterCount + " Chapters"
+                                        : ""}
+                                </p>
+                            </button>
                         </p>
                     ))}
             </div>

@@ -51,6 +51,7 @@ export class Storage {
         if (param) {
             urlObj.param = param;
         }
+        urlObj.chapterCount = story?.chapters?.length;
         //
         if (!this.storage.storyLinks.includes(urlObj)) {
             this.storage.storyLinks.push(urlObj);
