@@ -12,7 +12,7 @@ function FrontDesk({ label, storage, setSearchParams }: Props) {
     const txtURLId = `txtURL${label}`;
 
     return (
-        <>
+        <div className="frontDesk">
             Enter URL of {label}:
             <input
                 id={txtURLId}
@@ -21,6 +21,7 @@ function FrontDesk({ label, storage, setSearchParams }: Props) {
             ></input>
             <button
                 id="btnLoad"
+                className="buttonGo"
                 onClick={() =>
                     setSearchParams(
                         new URLSearchParams(
@@ -37,11 +38,11 @@ function FrontDesk({ label, storage, setSearchParams }: Props) {
                 GO
             </button>
             {/* Previously Accessed Story Buttons */}
-            <div>
                 {storage.entryCount > 0 &&
                     storage.getURLs().map((urlObj: any) => (
                         <p>
                             <button
+                                className="urlLink"
                                 onClick={() => {
                                     location.search =
                                         "?" +
@@ -50,9 +51,11 @@ function FrontDesk({ label, storage, setSearchParams }: Props) {
                                         urlObj.url;
                                 }}
                             >
-                                <p>{urlObj.title ?? urlObj.url}</p>
-                                <p>{urlObj.author ?? ""}</p>
-                                <p>
+                                <p className="pTitle">
+                                    {urlObj.title ?? urlObj.url}
+                                </p>
+                                <p className="pInfo">{urlObj.author ?? ""}</p>
+                                <p className="pInfo">
                                     {urlObj.chapterCount
                                         ? urlObj.chapterCount + " Chapters"
                                         : ""}
@@ -60,8 +63,7 @@ function FrontDesk({ label, storage, setSearchParams }: Props) {
                             </button>
                         </p>
                     ))}
-            </div>
-        </>
+        </div>
     );
 }
 

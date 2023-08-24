@@ -15,13 +15,80 @@ body {
     text-align: center;
 }
 
+p {
+    width: 100%;
+    text-align: left;
+}
+
+.frontDesk{
+    text-align: center;
+}
+
 .url {
     width: 90%;
 }
 
-p {
-    width: 100%;
-    text-align: left;
+.buttonGo{
+    border: none;
+    background: #222222;
+    z-index: 10;
+    border-radius: 0.5em;
+    color: lightgray;
+    font-weight: 700;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+.buttonGo:hover {
+    color: black;
+    background: white;
+}
+.buttonGo:disabled{
+    color:#444444;
+    background: #111111;
+}
+.buttonGo:disabled:hover{
+    color:#444444;
+    background: #111111;
+}
+
+
+
+.urlLink {
+    border: none;
+    background: #222222;
+    z-index: 10;
+    border-radius: 0.5em;
+    color: lightgray;
+    font-weight: 700;
+    /* padding: 1em; */
+    margin-top: 0em;
+    width:100%;
+}
+
+.urlLink:hover {
+    color: black;
+    background: white;
+}
+
+.pTitle {
+    font-size: medium;
+    color: white;
+    margin: 0em;
+}
+
+.urlLink:hover .pTitle {
+    color: black;
+}
+
+.pInfo {
+    font-size: small;
+    color: #AAAAAA;
+    margin: 0em;
+    font-weight: 400;
+}
+
+.urlLink:hover .pInfo {
+    color: #333333;
 }
 
 .moreInfo {
