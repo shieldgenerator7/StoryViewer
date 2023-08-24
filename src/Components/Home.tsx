@@ -137,7 +137,7 @@ function Home() {
             {/* Chapter Link */}
             <span className="buttonLinkContainer hideableContainer"></span>
             <span className="buttonLinkContainer hideable">
-                {story?.chapters.map((chapter: Chapter, index: number) => (
+                {story?.chapters.map((chapter: Chapter) => (
                     <a
                         className="buttonLink"
                         href={"#" + "ch" + chapter.number}
