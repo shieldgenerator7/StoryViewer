@@ -41,7 +41,11 @@ function FrontDesk({ label, storage, setSearchParams }: Props) {
                     storage.getURLs().map((urlObj: any) => (
                         <p>
                             <a
-                                href={`https://shieldgenerator7.github.io/StoryViewer/?url=${urlObj.url}`}
+                                onClick={() => {
+                                    let urlParams = new URLSearchParams(location.search);
+                                    urlParams.set("url", urlObj.url);
+                                    location.search = urlParams.toString();
+                                }}
                             >
                                 {urlObj.title ?? urlObj.url}
                             </a>
