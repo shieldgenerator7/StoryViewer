@@ -81,9 +81,9 @@ function Home() {
         if (characters != storyInfo.characters) {
             setCharacters(storyInfo.characters);
         }
+        storage.storeURL(searchURL ?? dndURL, storyInfo, dndURL ? "dnd" : "");
     }
     else if (story) {        
-        storage.storeURL(searchURL ?? dndURL, storyInfo, dndURL ? "dnd" : "");
         storage.storeURL(searchURL ?? dndURL, story, dndURL ? "dnd" : "");
     }
 
