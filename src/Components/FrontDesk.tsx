@@ -1,11 +1,14 @@
 "use strict";
 
+import { Storage } from "../System/Storage";
+
 interface Props {
     label: string;
+    storage: Storage;
     setSearchParams: (searchParams: URLSearchParams) => void;
 }
 
-function FrontDesk({ label, setSearchParams }: Props) {
+function FrontDesk({ label, storage, setSearchParams }: Props) {
     const txtURLId = `txtURL${label}`;
 
     return (
@@ -33,6 +36,18 @@ function FrontDesk({ label, setSearchParams }: Props) {
             >
                 GO
             </button>
+            <div>
+                {storage.storage.storyLinks?.length > 0 &&
+                    storage.storage.storyLinks.map((urlObj: any) => (
+                        <p>
+                            <a
+                                href={`https://shieldgenerator7.github.io/?url=${urlObj.url}`}
+                            >
+                                {urlObj.title ?? urlObj.url}
+                            </a>
+                        </p>
+                    ))}
+            </div>
         </>
     );
 }

@@ -8,6 +8,7 @@ import { StoryInfo } from "../System/StoryInfo";
 import { Story } from "../System/Story";
 import { Chapter } from "../System/Chapter";
 import { Paragraph } from "../System/Paragraph";
+import { Storage } from "../System/Storage";
 import * as Load from "../Utility/Load";
 import * as Select from "../Utility/Select";
 import { version } from "../version";
@@ -17,8 +18,11 @@ import { jump } from "../Utility/Jump";
 //2023-07-25: copied from https://stackoverflow.com/a/47736563/2336212
 // must cast as any to set property on window
 const _global = window as any;
+let storage;
 
 function Home() {
+    //Storage
+    storage ??= new Storage();
     //StoryInfo
     let storyInfo: StoryInfo | undefined;
     let setStoryInfo;
@@ -77,6 +81,10 @@ function Home() {
         if (characters != storyInfo.characters) {
             setCharacters(storyInfo.characters);
         }
+        storage.storeURL(searchURL, storyInfo);
+    }
+    else if (story) {        
+        storage.storeURL(searchURL, story);
     }
 
     //let searchWords = characters ?? [];
@@ -121,6 +129,7 @@ function Home() {
                 <div>
                     <FrontDesk
                         label="Story"
+                        storage={storage}
                         setSearchParams={setSearchParams}
                     />
                 </div>
