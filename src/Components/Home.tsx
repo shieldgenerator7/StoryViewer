@@ -113,14 +113,6 @@ function Home() {
 
     return (
         <>
-            <button
-                onClick={() => {
-                    storage.saveStorage();
-                    console.log("button clicked");
-                }}
-            >
-                Click \ me to save
-            </button>
             <InfoPanel
                 searchTerm={searchTerm}
                 story={story}

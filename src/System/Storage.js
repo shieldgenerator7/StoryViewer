@@ -11,8 +11,9 @@ export class Storage {
         this.entryCount = 0;
         this.loadStorage();
         this.saveStorage();
-        window.onbeforeunload = this.saveStorage;
-        window.onblur = this.saveStorage;
+        let storage = this;
+        window.onbeforeunload = () => { storage.saveStorage(); };
+        window.onblur = () => { storage.saveStorage(); };
     }
 
     _updateEntryCount() {
