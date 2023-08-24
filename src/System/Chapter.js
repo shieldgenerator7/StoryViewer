@@ -37,6 +37,8 @@ export class Chapter {
             this.number = "T";
             return;
         }
+        //Default: just use index
+        this.number = this.index;
     }
 
     analyze(characterList) {
@@ -63,7 +65,7 @@ export class Chapter {
             return "Epilogue";
         }
         //Chapter #
-        let isNumber = /|[0-9]+|/.test(`|${this.number}|`);
+        let isNumber = /[0-9]+/.test(`${this.number}`);
         if (isNumber) {
             return `Ch${this.number}`;
         }
