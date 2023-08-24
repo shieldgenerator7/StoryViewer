@@ -1,12 +1,5 @@
 go to console:
-npm run predeploy
-
-when thats done, find /dist/index.html, and on lines 9 and 10, add a period "." to the beginning of the file path
-"./assets/"
-
-go to console
-npm run deployonly
-
+npm run deployfull
 
 
 you should be good to go!

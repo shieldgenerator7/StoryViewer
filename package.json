@@ -5,6 +5,7 @@
   "homepage": "https://shieldgenerator7.github.io/StoryViewer/",
   "type": "module",
   "scripts": {
+    "deployfull": "npm run build && node build_correction.cjs && npm run deployonly",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "deployonly": "gh-pages -d dist",
