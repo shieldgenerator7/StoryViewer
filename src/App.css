@@ -130,6 +130,33 @@ p {
     background: white;
 }
 
+.hideable {
+    /* visibility: hidden; */
+    display: none;
+    /* position: fixed; */
+}
+
+.hideableContainer {
+    position: fixed;
+    width: 100%;
+    min-height: 10%;
+    height: 10%;
+    display: block;
+    position: fixed;
+    left: 0em;
+    top: 0em;
+    border: 1px white;
+}
+
+.hideable:hover,
+.hideableContainer:hover+.hideable {
+    /* visibility: visible; */
+    display: flex;
+}
+/* .hideableContainer:hover{
+    display:none;
+} */
+
 .buttonLinkContainer {
     position: fixed;
     left: 0em;
@@ -141,7 +168,7 @@ p {
     background: rgba(0, 0, 0, 0.4);
     z-index: 9;
     padding: 0.5em;
-    display: flex;
+    /* display: flex; */
 }
 
 .buttonLink {
