@@ -126,11 +126,12 @@ function Home() {
                     />
                 </div>
             )}
+            {/* Chapter Link */}
+            <span className="buttonLinkContainer">
             {story?.chapters.map((chapter: Chapter, index: number) => (
                 <a
                     className="buttonLink"
                     href={"#" + "ch" + chapter.number}
-                    style={{ left: index * 35 + 10 }}
                     title={chapter.title}
                 >
                     {chapter.getLabelShort()}
@@ -140,11 +141,12 @@ function Home() {
                 <a
                     className="buttonLink"
                     href={"#" + "chEnd"}
-                    style={{ left: story.chapters.length * 35 + 10 }}
+                    title="End"
                 >
                     End
                 </a>
             )}
+            </span>
             <div id="divParagraphs">
                 {story?.chapters.map((chapter: Chapter) =>
                     chapter.paragraphs.map((paragraph: Paragraph, index: number) => (

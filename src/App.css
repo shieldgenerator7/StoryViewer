@@ -130,9 +130,17 @@ p {
     background: white;
 }
 
-.buttonLink {
+.buttonLinkContainer {    
     position: fixed;
-    top: 1%;
+    left: 0em;
+    top: 0em;
+    border: none;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 9;
+    padding: 0.5em;
+}
+
+.buttonLink {
     border: none;
     background: black;
     z-index: 10;
@@ -140,7 +148,7 @@ p {
     color: lightgray;
     font-weight: 200;
     padding: 0.3%;
-    margin: 0%;
+    margin: 0.2em;
 }
 
 .buttonLink:hover {
