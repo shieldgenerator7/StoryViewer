@@ -24,7 +24,15 @@ export function processMD(
     text: string,
     setStory: (story: Story, callback?: Function) => void
 ) {
-    setStory(new Story(text));
+    let story = new Story(text);
+    setStory(story);
+    
+    //
+    //2023-08-23: TEST
+    //
+    const _global = window as any;
+    _global.story = story;
+    //
 }
 
 export function processJSON(
