@@ -133,7 +133,7 @@ function Home() {
                     style={{ left: index * 35 + 10 }}
                     title={chapter.title}
                 >
-                    {index == 0 ? "Title" : `Ch${index}`}
+                    {chapter.getLabelShort()}
                 </a>
             ))}
             {story && (

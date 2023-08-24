@@ -11,7 +11,7 @@ export class Story {
         this.chapters = ("\n" + text)
             .split(/\n *# +/)
             .filter((str) => str?.trim())
-            .map((text) => new Chapter(text));
+            .map((text, index) => new Chapter(text, index));
         this.title ??= this.chapters[0].title;
     }
 
