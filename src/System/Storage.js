@@ -23,6 +23,7 @@ export class Storage {
     saveStorage() {
         let stringify = JSON.stringify(this.storage);
         localStorage.setItem(this.storageName, stringify);
+        console.log("saveStorage", stringify);
     }
 
     loadStorage() {
@@ -35,6 +36,7 @@ export class Storage {
         }
         this.storage = JSON.parse(content) ?? this.storage;
         this._updateEntryCount();
+        console.log("loadStorage", this.storage);
     }
 
     storeURL(url, storyInfo, param) {
