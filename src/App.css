@@ -198,7 +198,7 @@ p {
 
 .hideableContainer {
     background: transparent;
-    min-height: 1em;
+    min-height: 2em;
 }
 
 .hideable:hover,
