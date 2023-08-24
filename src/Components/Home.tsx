@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 // import "bootstrap/dist/css/bootstrap.css";
 import FrontDesk from "../Components/FrontDesk";
-import ParagraphC  from "../Components/ParagraphC";
+import ParagraphC from "../Components/ParagraphC";
 import InfoPanel from "../Components/InfoPanel";
 import { StoryInfo } from "../System/StoryInfo";
 import { Story } from "../System/Story";
@@ -14,10 +14,9 @@ import { version } from "../version";
 import * as React from "react";
 import { jump } from "../Utility/Jump";
 
-
 //2023-07-25: copied from https://stackoverflow.com/a/47736563/2336212
 // must cast as any to set property on window
-const _global = window as any
+const _global = window as any;
 
 function Home() {
     //StoryInfo
@@ -128,71 +127,91 @@ function Home() {
             )}
             {/* Chapter Link */}
             <span className="buttonLinkContainer">
-            {story?.chapters.map((chapter: Chapter, index: number) => (
-                <a
-                    className="buttonLink"
-                    href={"#" + "ch" + chapter.number}
-                    title={chapter.title}
-                >
-                    {chapter.getLabelShort()}
-                </a>
-            ))}
-            {story && (
-                <a
-                    className="buttonLink"
-                    href={"#" + "chEnd"}
-                    title="End"
-                >
-                    End
-                </a>
-            )}
+                {story?.chapters.map((chapter: Chapter, index: number) => (
+                    <a
+                        className="buttonLink"
+                        href={"#" + "ch" + chapter.number}
+                        title={chapter.title}
+                    >
+                        {chapter.getLabelShort()}
+                    </a>
+                ))}
+                {story && (
+                    <a
+                        className="buttonLink"
+                        href={"#" + "chEnd"}
+                        title="End"
+                    >
+                        End
+                    </a>
+                )}
             </span>
             <div id="divParagraphs">
                 {story?.chapters.map((chapter: Chapter) =>
-                    chapter.paragraphs.map((paragraph: Paragraph, index: number) => (
-                        <>
-                            {/* Paragraph Header */}
-                            {index == 0 && (
-                                <h1
-                                    id={"ch" + chapter.number}
-                                    key={chapter.number + "-" + index}
-                                >
-                                    {paragraph.text}
-                                </h1>
-                            )}
-                            {index > 0 && (
-                                <>
-                                    {/* Paragraph Links */}
-                                    {paragraph?.text.trim().length > 0 && (
-                                        <span
-                                            className="place"
-                                            key={"spn" + chapter.number + "-" + index}
-                                            onClick={() => {
-                                                let id =
-                                                    "p" + chapter.number + "-" + index;
-                                                Select.selectText(id);
-                                                history.pushState(
-                                                    undefined,
-                                                    storyInfo?.title,
-                                                    `#${id}`
-                                                );
-                                            }}
-                                        >
-                                            {chapter.number}-{index}
-                                        </span>
-                                    )}
-                                    {/* Paragraph Content */}
-                                    <ParagraphC
-                                        key={"p" + chapter.number + "-" + index}
-                                        paragraph={paragraph}
-                                        id={"p" + chapter.number + "-" + index}
-                                        activeCharName={searchTerm}
-                                    />
-                                    <p></p>
-                                </>
-                            )}
-                        </>
-                    ))
+                    chapter.paragraphs.map(
+                        (paragraph: Paragraph, index: number) => (
+                            <>
+                                {/* Paragraph Header */}
+                                {index == 0 && (
+                                    <h1
+                                        id={"ch" + chapter.number}
+                                        key={chapter.number + "-" + index}
+                                    >
+                                        {paragraph.text}
+                                    </h1>
+                                )}
+                                {index > 0 && (
+                                    <>
+                                        {/* Paragraph Links */}
+                                        {paragraph?.text.trim().length > 0 && (
+                                            <span
+                                                className="place"
+                                                key={
+                                                    "spn" +
+                                                    chapter.number +
+                                                    "-" +
+                                                    index
+                                                }
+                                                onClick={() => {
+                                                    let id =
+                                                        "p" +
+                                                        chapter.number +
+                                                        "-" +
+                                                        index;
+                                                    Select.selectText(id);
+                                                    history.pushState(
+                                                        undefined,
+                                                        storyInfo?.title,
+                                                        `#${id}`
+                                                    );
+                                                }}
+                                            >
+                                                {chapter.number}-{index}
+                                            </span>
+                                        )}
+                                        {/* Paragraph Content */}
+                                        <ParagraphC
+                                            key={
+                                                "p" +
+                                                chapter.number +
+                                                "-" +
+                                                index
+                                            }
+                                            paragraph={paragraph}
+                                            id={
+                                                "p" +
+                                                chapter.number +
+                                                "-" +
+                                                index
+                                            }
+                                            activeCharName={searchTerm}
+                                        />
+                                        <p></p>
+                                    </>
+                                )}
+                            </>
+                        )
+                    )
                 )}
             </div>
             {story && (
