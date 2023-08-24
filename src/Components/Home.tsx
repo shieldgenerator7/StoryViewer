@@ -129,7 +129,7 @@ function Home() {
             {story?.chapters.map((chapter: Chapter, index: number) => (
                 <a
                     className="buttonLink"
-                    href={"#" + "ch" + index}
+                    href={"#" + "ch" + chapter.number}
                     style={{ left: index * 35 + 10 }}
                     title={chapter.title}
                 >
@@ -146,13 +146,13 @@ function Home() {
                 </a>
             )}
             <div id="divParagraphs">
-                {story?.chapters.map((chapter: Chapter, chIndex: number) =>
+                {story?.chapters.map((chapter: Chapter) =>
                     chapter.paragraphs.map((paragraph: Paragraph, index: number) => (
                         <>
                             {index == 0 && (
                                 <h1
-                                    id={"ch" + chIndex}
-                                    key={chIndex + "-" + index}
+                                    id={"ch" + chapter.number}
+                                    key={chapter.number + "-" + index}
                                 >
                                     {paragraph.text}
                                 </h1>
@@ -162,10 +162,10 @@ function Home() {
                                     {paragraph?.text.trim().length > 0 && (
                                         <span
                                             className="place"
-                                            key={"spn" + chIndex + "-" + index}
+                                            key={"spn" + chapter.number + "-" + index}
                                             onClick={() => {
                                                 let id =
-                                                    "p" + chIndex + "-" + index;
+                                                    "p" + chapter.number + "-" + index;
                                                 Select.selectText(id);
                                                 history.pushState(
                                                     undefined,
@@ -174,13 +174,13 @@ function Home() {
                                                 );
                                             }}
                                         >
-                                            {chIndex}-{index}
+                                            {chapter.number}-{index}
                                         </span>
                                     )}
                                     <ParagraphC
-                                        key={"p" + chIndex + "-" + index}
+                                        key={"p" + chapter.number + "-" + index}
                                         paragraph={paragraph}
-                                        id={"p" + chIndex + "-" + index}
+                                        id={"p" + chapter.number + "-" + index}
                                         activeCharName={searchTerm}
                                     />
                                     <p></p>
