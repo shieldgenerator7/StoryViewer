@@ -130,19 +130,6 @@ p {
     background: white;
 }
 
-.hideable {
-    visibility: hidden;
-}
-
-.hideableContainer {
-    background: transparent;
-}
-
-.hideable:hover,
-.hideableContainer:hover+.hideable {
-    visibility: visible;
-}
-
 .buttonLinkContainer {
     position: fixed;
     left: 0em;
@@ -202,4 +189,17 @@ p {
     margin-top: 5%;
     font-weight: 100;
     font-size: smaller;
+}
+
+.hideable {
+    visibility: hidden;
+}
+
+.hideableContainer {
+    background: transparent;
+}
+
+.hideable:hover,
+.hideableContainer:hover+.hideable {
+    visibility: visible;
 }
