@@ -37,8 +37,8 @@ function FrontDesk({ label, storage, setSearchParams }: Props) {
                 GO
             </button>
             <div>
-                {storage.storage.storyLinks?.length > 0 &&
-                    storage.storage.storyLinks.map((urlObj: any) => (
+                {storage.entryCount > 0 &&
+                    storage.getURLs().map((urlObj: any) => (
                         <p>
                             <a
                                 href={`https://shieldgenerator7.github.io/?url=${urlObj.url}`}
