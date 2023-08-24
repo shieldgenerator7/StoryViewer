@@ -6,7 +6,7 @@ export class Storage {
     constructor() {
         this.storageName = "StoryViewerStorage";
         this.storage = {
-            storyLinks: {},
+            storyLinks: [],
         };
         this.entryCount = 0;
         this.loadStorage();
@@ -16,7 +16,7 @@ export class Storage {
     }
 
     _updateEntryCount() {
-        this.entryCount = Object.values(this.storage.storyLinks).length;
+        this.entryCount = this.storage.storyLinks.length;
     }
 
     saveStorage() {
@@ -38,16 +38,18 @@ export class Storage {
 
     storeURL(url, storyInfo) {
         let story = storyInfo?.story ?? storyInfo;
-        let urlObj = this.storage.storyLinks[url] ?? {};
+        let urlObj = this.storage.storyLinks.find(obj => obj.url == url) ?? {};
         //
         urlObj.url = url;
         urlObj.title = storyInfo?.title ?? story?.title ?? urlObj.title;
         //
-        this.storage.storyLinks[url] = urlObj;
+        if (!this.storage.storyLinks.includes(urlObj)) {
+            this.storage.storyLinks.push(urlObj);
+        }
         this._updateEntryCount();
     }
 
     getURLs() {
-        return Object.values(this.storage.storyLinks);
+        return this.storage.storyLinks;
     }
 }
