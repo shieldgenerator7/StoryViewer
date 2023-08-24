@@ -50,7 +50,8 @@ function FrontDesk({ label, storage, setSearchParams }: Props) {
                                         urlObj.url;
                                 }}
                             >
-                                <p> {urlObj.title ?? urlObj.url}</p>
+                                <p>{urlObj.title ?? urlObj.url}</p>
+                                <p>{urlObj.author ?? ""}</p>
                                 <p>
                                     {urlObj.chapterCount
                                         ? urlObj.chapterCount + " Chapters"
