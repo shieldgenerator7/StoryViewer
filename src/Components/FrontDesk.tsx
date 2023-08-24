@@ -41,7 +41,7 @@ function FrontDesk({ label, storage, setSearchParams }: Props) {
                     storage.getURLs().map((urlObj: any) => (
                         <p>
                             <a
-                                href={`https://shieldgenerator7.github.io/?url=${urlObj.url}`}
+                                href={`https://shieldgenerator7.github.io/StoryViewer/?url=${urlObj.url}`}
                             >
                                 {urlObj.title ?? urlObj.url}
                             </a>
