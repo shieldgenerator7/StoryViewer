@@ -38,31 +38,31 @@ function FrontDesk({ label, storage, setSearchParams }: Props) {
                 GO
             </button>
             {/* Previously Accessed Story Buttons */}
-                {storage.entryCount > 0 &&
-                    storage.getURLs().map((urlObj: any) => (
-                        <p>
-                            <button
-                                className="urlLink"
-                                onClick={() => {
-                                    location.search =
-                                        "?" +
-                                        (urlObj.param ?? "url") +
-                                        "=" +
-                                        urlObj.url;
-                                }}
-                            >
-                                <p className="pTitle">
-                                    {urlObj.title ?? urlObj.url}
-                                </p>
-                                <p className="pInfo">{urlObj.author ?? ""}</p>
-                                <p className="pInfo">
-                                    {urlObj.chapterCount
-                                        ? urlObj.chapterCount + " Chapters"
-                                        : ""}
-                                </p>
-                            </button>
-                        </p>
-                    ))}
+            {storage.entryCount > 0 &&
+                storage.getURLs().map((urlObj: any) => (
+                    <p>
+                        <button
+                            className="urlLink"
+                            onClick={() => {
+                                location.search =
+                                    "?" +
+                                    (urlObj.param ?? "url") +
+                                    "=" +
+                                    urlObj.url;
+                            }}
+                        >
+                            <p className="pTitle">
+                                {urlObj.title ?? urlObj.url}
+                            </p>
+                            <p className="pInfo">{urlObj.author ?? ""}</p>
+                            <p className="pInfo">
+                                {urlObj.chapterCount
+                                    ? urlObj.chapterCount + " Chapters"
+                                    : ""}
+                            </p>
+                        </button>
+                    </p>
+                ))}
         </div>
     );
 }
