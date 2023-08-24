@@ -37,12 +37,16 @@ export class Storage {
         this._updateEntryCount();
     }
 
-    storeURL(url, storyInfo) {
+    storeURL(url, storyInfo, param) {
+        // console.log("storeURL called 1: ", url, this.storage);
         let story = storyInfo?.story ?? storyInfo;
         let urlObj = this.storage.storyLinks.find(obj => obj.url == url) ?? {};
         //
         urlObj.url = url;
         urlObj.title = storyInfo?.title ?? story?.title ?? urlObj.title;
+        if (param) {
+            urlObj.param = param;
+        }
         //
         if (!this.storage.storyLinks.includes(urlObj)) {
             this.storage.storyLinks.push(urlObj);

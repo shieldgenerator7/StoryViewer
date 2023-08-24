@@ -81,10 +81,10 @@ function Home() {
         if (characters != storyInfo.characters) {
             setCharacters(storyInfo.characters);
         }
-        storage.storeURL(searchURL, storyInfo);
     }
     else if (story) {        
-        storage.storeURL(searchURL, story);
+        storage.storeURL(searchURL ?? dndURL, storyInfo, dndURL ? "dnd" : "");
+        storage.storeURL(searchURL ?? dndURL, story, dndURL ? "dnd" : "");
     }
 
     //let searchWords = characters ?? [];

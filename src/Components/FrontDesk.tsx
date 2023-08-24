@@ -42,9 +42,11 @@ function FrontDesk({ label, storage, setSearchParams }: Props) {
                         <p>
                             <a
                                 onClick={() => {
-                                    let urlParams = new URLSearchParams(location.search);
-                                    urlParams.set("url", urlObj.url);
-                                    location.search = urlParams.toString();
+                                    location.search =
+                                        "?" +
+                                        (urlObj.param ?? "url") +
+                                        "=" +
+                                        urlObj.url;
                                 }}
                             >
                                 {urlObj.title ?? urlObj.url}
