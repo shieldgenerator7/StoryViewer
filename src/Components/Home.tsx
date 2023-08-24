@@ -126,7 +126,7 @@ function Home() {
                 </div>
             )}
             {/* Chapter Link */}
-            <span className="hideableContainer"></span>
+            <span className="buttonLinkContainer hideableContainer"></span>
             <span className="buttonLinkContainer hideable">
                 {story?.chapters.map((chapter: Chapter, index: number) => (
                     <a
